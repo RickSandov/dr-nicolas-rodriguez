@@ -4,3 +4,4 @@ export * from "./Gine";
 export * from "./Obstetricia";
 export * from "./DeteccionVPH";
 export * from "./TratamientoVPH";
+export * from "./Mom";

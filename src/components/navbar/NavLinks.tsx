@@ -1,9 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { MouseEventHandler, useState } from 'react'
 
 export const NavLinks = () => {
     const [isOpen, setIsOpen] = useState(false);
+
+    const onClick = (event: MouseEventHandler<HTMLAnchorElement>) => {
+        window.scroll
+    }
 
     return (
         <>
@@ -11,7 +15,7 @@ export const NavLinks = () => {
                 <HamburgerMenu isOpen={isOpen} toggleIsOpen={() => setIsOpen(!isOpen)} />
                 <ul className={`flex md:flex-row flex-col md:relative absolute md:h-fit  gap-2 ${isOpen ? 'h-44 shadow-lg bg-white' : 'h-0'} right-0 left-0 top-24 md:top-0 md:shadow-none overflow-hidden transition-all w-full md:w-fit items-center pt-5 md:pt-0 md:rounded-none rounded-lg`} >
                     <li className={`text-primary uppercase cursor-pointer text-sm font-bold px-3 py-2 hover:bg-secondary-light transition-all rounded-full`} >
-                        <a href="#servicios">
+                        <a href="#servicios" >
                             especialidades
                         </a>
                     </li>

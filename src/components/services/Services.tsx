@@ -2,34 +2,33 @@
 import { FC, useEffect, useCallback, useRef, useState } from "react";
 import { IService, services } from "./data";
 import { AnimatePresence, motion } from "framer-motion";
+import { Mom } from "../icons";
+import { itemVariants, parentVariants } from "@/utils/motion";
 
 export function Services() {
     const [activeService, setActiveService] = useState(services[0]);
 
-    // const ServiceToShow = useCallback(
-    //     () => {
-    //         return <FullService service={activeService} />
-    //     },
-    //     [activeService],
-    // )
-
-
     return (
-        <main id='servicios' className='relative -top-24 rounded-2xl bg-primary w-[1600px] max-w-[100%] mx-auto md:flex' >
-            <aside className={`py-14 px-4 md:px-16 min-h-[300px]`} >
+        <main id='servicios' className='relative -top-24 rounded-2xl bg-primary w-[1800px] max-w-[100%] mx-auto md:flex transition-all shadow-dark' >
+            <aside className={`py-14 px-4 md:px-16 min-h-[300px] md:min-h-[900px] relative`} >
                 <div>
                     <h3 className='uppercase text-4xl text-secondary-light text-bold' >
                         Servicios
                     </h3>
                     <span className='block w-24 h-1 bg-white' ></span>
                 </div>
-                <ul id='lista-servicios' className="departments-list mt-12 flex gap-12 overflow-x-scroll pb-6 md:flex-col md:gap-10 md:mt-24" >
+                <ul
+                    id='lista-servicios'
+                    className="departments-list mt-12 flex gap-12 overflow-x-scroll md:overflow-visible pb-6 md:flex-col md:gap-10 md:mt-24" >
                     {
                         services.map((service) => (
                             <ServicesNavItem title={service.title} Icon={service.Icon} key={service.title} isActive={activeService.title === service.title} setIsActive={() => setActiveService(service)} />
                         ))
                     }
                 </ul>
+                <div className="absolute hidden md:block bottom-0 left-0 pointer-events-none transition-all" >
+                    <Mom />
+                </div>
             </aside>
             <div className="w-[95%] mx-auto relative -translate-y-16 md:-translate-y-12" >
                 <AnimatePresence>
@@ -53,7 +52,7 @@ function FullService({ service }: { service: IService }) {
                 delay: 0,
                 duration: .4
             }}
-            className="rounded-xl bg-white px-6 py-8 md:px-14 md:py-12 lg:px-16 shadow-dark relative"
+            className="rounded-3xl bg-white px-6 py-8 md:px-14 md:py-12 lg:px-16 shadow-dark md:mr-6"
         >
             <header className="mb-8">
                 <div className="fill-primary w-20" >
@@ -69,27 +68,34 @@ function FullService({ service }: { service: IService }) {
                     >{text}</p>
                 ))
             }
-            <ul className="mt-12 flex flex-col gap-8" >
+            <motion.ul
+                variants={parentVariants}
+                // animate='open'
+                whileInView='open'
+                viewport={{
+                    once: true
+                }}
+                initial='closed'
+                className="mt-12 flex flex-col gap-8" >
                 {
                     items.map(({ text, title }) => (
-                        <li
+                        <motion.li
+                            variants={itemVariants}
                             key={text}
                             className="shadow-light py-4 px-4 rounded-xl w-[100%]"
                         >
                             <h3 className="uppercase font-bold mb-4" >{title}</h3>
                             <p className="text-primary leading-relaxed ">{text}</p>
-                        </li>
+                        </motion.li>
                     ))
                 }
-            </ul>
+            </motion.ul>
         </motion.article>
     )
 }
 
 
 function ServicesNavItem({ title, Icon, isActive, setIsActive }: { title: string, Icon: FC, isActive: boolean, setIsActive: () => void }) {
-
-    // console.log({ title, isActive })
 
     const ref = useRef<HTMLLIElement>(null)
     useEffect(() => {
@@ -106,8 +112,11 @@ function ServicesNavItem({ title, Icon, isActive, setIsActive }: { title: string
     }, [isActive])
 
     return (
-        <li ref={ref} onClick={setIsActive} className={`fill-white text-white transition-all flex items-center justify-left gap-2 cursor-default opacity-60 ${isActive ? 'opacity-100' : ''}`} >
-            <div className="w-10 flex justify-center" >
+        <li
+            ref={ref}
+            onClick={setIsActive}
+            className={`fill-white text-white transition-all flex items-center justify-left gap-2 cursor-default relative hover:-translate-x-2 ${isActive ? 'opacity-100 -translate-x-5 hover:-translate-x-5' : 'opacity-60'} `} >
+            <div className="w-10 flex max-h-10 justify-center" >
                 <Icon />
             </div>
             <h3 className="leading-tight" >{title}</h3>

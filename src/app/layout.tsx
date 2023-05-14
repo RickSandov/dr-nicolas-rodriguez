@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className='bg-secondary' >
+    <html lang="en" className='bg-white' >
       <body className={lato.className}>
         <Navbar />
         {children}
