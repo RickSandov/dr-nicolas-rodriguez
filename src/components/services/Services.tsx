@@ -10,7 +10,7 @@ export function Services() {
 
     return (
         <main id='servicios' className='relative -top-24 rounded-2xl bg-primary w-[1800px] max-w-[100%] mx-auto md:flex transition-all shadow-dark' >
-            <aside className={`py-14 px-4 md:px-16 min-h-[300px] md:min-h-[900px] relative`} >
+            <aside className={`py-14 px-4 md:px-16 min-h-[300px] md:h-[1000px] relative`} >
                 <div>
                     <h3 className='uppercase text-4xl text-secondary-light text-bold' >
                         Servicios
@@ -30,7 +30,7 @@ export function Services() {
                     <Mom />
                 </div>
             </aside>
-            <div className="w-[95%] mx-auto relative -translate-y-16 md:-translate-y-12" >
+            <div className="w-[95%] mx-auto md:max-w-[75%] relative -translate-y-16 md:-translate-y-12" >
                 <AnimatePresence>
                     <FullService service={activeService} />
                 </AnimatePresence>
@@ -115,7 +115,7 @@ function ServicesNavItem({ title, Icon, isActive, setIsActive }: { title: string
         <li
             ref={ref}
             onClick={setIsActive}
-            className={`fill-white text-white transition-all flex items-center justify-left gap-2 cursor-default relative md:hover:-translate-x-2 ${isActive ? 'opacity-100 md:-translate-x-5 md:hover:-translate-x-5' : 'opacity-60'} `} >
+            className={`fill-white text-white transition-all flex items-center justify-left gap-2 cursor-default relative md:hover:-translate-x-2 ${isActive ? 'opacity-100 md:-translate-x-5 md:hover:-translate-x-5' : 'opacity-40'} `} >
             <div className="w-10 flex max-h-10 h-10 justify-center" >
                 <Icon />
             </div>
