@@ -11,21 +11,23 @@ export function Services() {
     return (
         <main id='servicios' className='relative -top-24 rounded-2xl bg-primary w-[1800px] max-w-[100%] mx-auto md:flex transition-all shadow-dark' >
             <aside className={`py-14 px-4 md:px-16 min-h-[300px] md:h-[1000px] relative`} >
-                <div>
-                    <h3 className='uppercase text-4xl text-secondary-light text-bold' >
-                        Servicios
-                    </h3>
-                    <span className='block w-24 h-1 bg-white' ></span>
+                <div className="md:sticky md:top-[180px]">
+                    <div>
+                        <h3 className='uppercase text-4xl text-secondary-light text-bold' >
+                            Servicios
+                        </h3>
+                        <span className='block w-24 h-1 bg-white' ></span>
+                    </div>
+                    <ul
+                        id='lista-servicios'
+                        className="departments-list mt-12 flex gap-12 overflow-x-scroll md:overflow-visible pb-6 md:flex-col md:gap-10 md:mt-24" >
+                        {
+                            services.map((service) => (
+                                <ServicesNavItem title={service.title} Icon={service.Icon} key={service.title} isActive={activeService.title === service.title} setIsActive={() => setActiveService(service)} />
+                            ))
+                        }
+                    </ul>
                 </div>
-                <ul
-                    id='lista-servicios'
-                    className="departments-list mt-12 flex gap-12 overflow-x-scroll md:overflow-visible pb-6 md:flex-col md:gap-10 md:mt-24" >
-                    {
-                        services.map((service) => (
-                            <ServicesNavItem title={service.title} Icon={service.Icon} key={service.title} isActive={activeService.title === service.title} setIsActive={() => setActiveService(service)} />
-                        ))
-                    }
-                </ul>
                 <div className="absolute hidden md:block bottom-0 left-0 pointer-events-none transition-all opacity-60" >
                     <Mom />
                 </div>
@@ -70,7 +72,6 @@ function FullService({ service }: { service: IService }) {
             }
             <motion.ul
                 variants={parentVariants}
-                // animate='open'
                 whileInView='open'
                 viewport={{
                     once: true

@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className='bg-white' >
+    <html lang="en" className='bg-white scroll-pt-[100px] md:scroll-pt-[160px]' >
       <body className={lato.className}>
         <Navbar />
         {children}
