@@ -116,7 +116,7 @@ function ServicesNavItem({ title, Icon, isActive, setIsActive }: { title: string
             ref={ref}
             onClick={setIsActive}
             className={`fill-white text-white transition-all flex items-center justify-left gap-2 cursor-default relative hover:-translate-x-2 ${isActive ? 'opacity-100 -translate-x-5 hover:-translate-x-5' : 'opacity-60'} `} >
-            <div className="w-10 flex max-h-10 justify-center" >
+            <div className="w-10 flex max-h-10 h-10 justify-center" >
                 <Icon />
             </div>
             <h3 className="leading-tight" >{title}</h3>
