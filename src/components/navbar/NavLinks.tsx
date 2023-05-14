@@ -1,13 +1,25 @@
 'use client'
 
-import { MouseEventHandler, useState } from 'react'
+import { MouseEventHandler, useEffect, useState } from 'react'
 
 export const NavLinks = () => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const onClick = (event: MouseEventHandler<HTMLAnchorElement>) => {
-        window.scroll
-    }
+    useEffect(() => {
+        let lastOffsetY = 0
+
+        const listenerHandler = (e: Event) => {
+            const newOffsetY = window.scrollY;
+            if (newOffsetY - lastOffsetY >= 10) {
+                setIsOpen(false);
+            }
+            lastOffsetY = newOffsetY;
+        }
+        document.addEventListener('scroll', listenerHandler)
+        return () => {
+            document.removeEventListener('scroll', listenerHandler)
+        }
+    }, [])
 
     return (
         <>

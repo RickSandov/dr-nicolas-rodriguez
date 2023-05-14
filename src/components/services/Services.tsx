@@ -26,7 +26,7 @@ export function Services() {
                         ))
                     }
                 </ul>
-                <div className="absolute hidden md:block bottom-0 left-0 pointer-events-none transition-all" >
+                <div className="absolute hidden md:block bottom-0 left-0 pointer-events-none transition-all opacity-60" >
                     <Mom />
                 </div>
             </aside>
