@@ -10,7 +10,7 @@ export const NavLinks = () => {
 
         const listenerHandler = (e: Event) => {
             const newOffsetY = window.scrollY;
-            if (newOffsetY - lastOffsetY >= 10) {
+            if (newOffsetY - lastOffsetY >= 10 || newOffsetY - lastOffsetY <= -9) {
                 setIsOpen(false);
             }
             lastOffsetY = newOffsetY;
