@@ -5,3 +5,6 @@ export * from "./Obstetricia";
 export * from "./DeteccionVPH";
 export * from "./TratamientoVPH";
 export * from "./Mom";
+export * from "./Facebook";
+export * from "./Call";
+export * from "./Wa";

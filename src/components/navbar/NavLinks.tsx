@@ -43,7 +43,8 @@ export const NavLinks = () => {
                     <li className='py-2'>
                         <a href="#agendar"
                             className={`text-white uppercase cursor-pointer text-sm font-bold px-3 py-2 hover:bg-secondary-light hover:text-primary transition-all bg-primary rounded-full`}>
-                            agendar cita
+                            {/* agendar cita */}
+                            contacto
                         </a>
                     </li>
                 </ul>
