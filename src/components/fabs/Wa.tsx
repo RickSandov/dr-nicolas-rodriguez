@@ -11,12 +11,13 @@ export const WaFab = () => {
             viewport={{
                 once: true
             }}
-            className={`w-12 rounded-full bg-white shadow-dark p-2 fill-[#2AC660]`}
+            className={`w-14 rounded-full bg-white shadow-dark p-2`}
         >
             <a
-                href="https://wa.me/+526182590909"
+                href="https://wa.me/+526181340926"
                 target="_blank"
                 rel="noreferrer"
+                className='fill-[#2AC660]'
             >
                 <WaIcon />
             </a>

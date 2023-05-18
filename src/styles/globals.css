@@ -8,3 +8,21 @@
     box-sizing: border-box;
     scroll-behavior: smooth;
 }
+
+body {
+    overflow-y: var(--overflow);
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #E1C1CF !important;
+  text-shadow: 0 0 5px rgba(225, 193, 207, 0.4);
+}
+
+.swiper-pagination-bullet {
+    background-color: #BA5B80;
+}
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+    background-color: #BA5B80;
+    /* color: #00000033; */
+}

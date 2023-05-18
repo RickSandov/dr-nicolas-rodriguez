@@ -13,7 +13,7 @@ export const FabIcons = () => {
             variants={staggerContainer(.5, .2)}
             initial='hidden'
             whileInView='show'
-            className={`fixed right-2 bottom-2 flex flex-col fill-white gap-2`}>
+            className={`fixed z-50 right-2 bottom-2 flex flex-col fill-white gap-2`}>
             {/* <FbFab /> */}
             <WaFab />
             <CallFab />

@@ -9,7 +9,7 @@ export function Services() {
     const [activeService, setActiveService] = useState(services[0]);
 
     return (
-        <main id='servicios' className='relative -top-24 rounded-2xl bg-primary w-[1800px] max-w-[100%] mx-auto md:flex transition-all shadow-dark' >
+        <main id='servicios' className='relative -top-24 rounded-2xl bg-primary max-w-[100%] mx-auto md:flex transition-all shadow-dark' >
             <aside className={`py-14 px-4 md:px-16 min-h-[300px] md:h-[1000px] relative`} >
                 <div className="md:sticky md:top-[180px]">
                     <div>
@@ -60,7 +60,7 @@ function FullService({ service }: { service: IService }) {
                 <div className="fill-primary w-20" >
                     <Icon />
                 </div>
-                <h2 className="text-2xl mt-4 md:mt-6 font-medium" >{`Departamento de ${title}`}</h2>
+                <h2 className="text-2xl mt-4 md:mt-6 font-medium text-black" >{`Departamento de ${title}`}</h2>
             </header>
             {
                 description.map((text, index) => (
@@ -85,7 +85,7 @@ function FullService({ service }: { service: IService }) {
                             key={text}
                             className="shadow-light py-4 px-4 rounded-xl w-[100%]"
                         >
-                            <h3 className="uppercase font-bold mb-4" >{title}</h3>
+                            <h3 className="uppercase font-bold mb-4 text-black" >{title}</h3>
                             <p className="text-primary leading-relaxed ">{text}</p>
                         </motion.li>
                     ))

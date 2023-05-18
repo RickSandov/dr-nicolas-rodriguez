@@ -8,3 +8,5 @@ export * from "./Mom";
 export * from "./Facebook";
 export * from "./Call";
 export * from "./Wa";
+export * from "./InstagramIcon";
+export * from "./Navigate";

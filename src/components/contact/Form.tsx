@@ -1,54 +1,67 @@
 'use client'
 
-import { Field, Formik } from 'formik'
+import { Field, Formik, FormikHelpers } from 'formik'
 import * as Yup from 'yup';
 import { Card } from '../card/Card';
-import { useId } from 'react';
+import { FormEventHandler, useId } from 'react';
 import { Input } from './Input';
 import Button from '../button/Button';
 
 const validationSchema = Yup.object({
     name: Yup.string().required('Campo requerido'),
-    phoneNumber: Yup.string().required('Campo requerido')
+    phoneNumber: Yup.string().required('Campo requerido').max(10, 'El número debe ser de 10 dígitos'),
+    message: Yup.string()
 })
 
 const initialValues = {
     name: '',
-    phoneNumber: ''
+    phoneNumber: '',
+    message: ''
 }
 
 export const Form = () => {
 
-    const onSubmit = () => {
+    const onSubmit = (values: (typeof initialValues), helpers: FormikHelpers<typeof initialValues>) => {
 
+        console.log({ 'enviar': values })
     }
 
     const fromikProps = { initialValues, validationSchema, onSubmit }
 
     return (
         <Card
+            id='formulario'
             noPadding
-            className='flex-1 md:min-w-[420px] bg-gradient-to-br from-primary to-secondary text-white px-6 py-8 md:px-8 md:py-16'
+            className='flex-1 md:min-w-[420px] max-w-full xl:max-w-[550px] bg-gradient-to-br from-primary to-secondary text-white px-6 py-8 md:px-8 md:py-16'
         >
             <Formik
                 {...fromikProps}
             >
 
                 {({ handleSubmit }) => (
-                    <form className='flex flex-col gap-3' >
-                        <h4 className='font-medium text-lg mb-10 text-center'>Formulario de contacto</h4>
+                    <form className='flex flex-col gap-3' onSubmit={handleSubmit} >
+                        <h4 className='font-bold text-secondary-light text-xl mb-10 text-center'>Formulario de contacto</h4>
                         <div className="flex flex-col gap-4">
                             <Input
                                 name='name'
                                 nameDisplayed='Tu nombre'
+                                placeholder='escribe tu nombre aqui'
                             />
                             <Input
                                 name='phoneNumber'
                                 nameDisplayed='Número de contacto'
                                 type='number'
+                                placeholder='ej. 6181234567'
+                            />
+                            <Input
+                                name='message'
+                                type='textarea'
+                                nameDisplayed="Mensaje"
+                                placeholder='menciona cualquier información adicional o relevante'
                             />
                         </div>
-                        <Button className='mt-32 self-end ' >
+                        <p className='text-center text-sm'>Tu bienestar es nuestra prioridad y estamos aquí para brindarte la mejor atención médica. ¡Esperamos poder atenderte pronto!</p>
+                        <Button className='mt-20 w-full md:mt-32 md:w-fit self-end ' >
                             Enviar formulario
                         </Button>
                     </form>

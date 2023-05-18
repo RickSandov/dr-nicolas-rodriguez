@@ -18,8 +18,6 @@ export const services: IService[] = [
     title: "Ginecología",
     Icon: Gine,
     description: [
-      // "Ofrecemos una amplia gama de servicios, desde exámenes de rutina y asesoramiento sobre planificación familiar hasta diagnóstico y tratamiento de enfermedades ginecológicas.",
-      // "Nuestro equipo de profesionales altamente capacitados se dedica a brindarle el mejor cuidado posible para ayudarla a mantenerse saludable y prevenir enfermedades.",
       "Nuestro departamento de ginecología está dedicado a proporcionar la mejor atención médica para la salud femenina. Desde exámenes de rutina hasta tratamientos especializados, nuestro equipo de expertos está altamente capacitado para manejar cualquier problema de salud ginecológica que pueda enfrentar.",
       "Nos esforzamos por brindar a cada paciente una experiencia personalizada y acogedora, enfocándonos en la prevención y el tratamiento de enfermedades ginecológicas, así como en la educación y el asesoramiento en materia de salud sexual y reproductiva.",
       "En nuestro centro, creemos que una buena salud ginecológica es fundamental para el bienestar general de nuestras pacientes, y estamos comprometidos en brindar la mejor atención posible en un ambiente seguro y confidencial.",
@@ -53,7 +51,36 @@ export const services: IService[] = [
       "Nos esforzamos por proporcionar un ambiente seguro y respetuoso con la madre y el bebé, enfocándonos en el parto seguro y cómodo para ambas partes. Además, nuestro equipo está altamente comprometido en brindar asesoramiento y orientación a las madres y sus familias durante todo el proceso.",
       "En nuestro centro, creemos en la importancia de una experiencia positiva de embarazo y parto, y estamos comprometidos en brindar la mejor atención obstétrica posible en un ambiente acogedor y familiar.",
     ],
-    items: [],
+    items: [
+      {
+        title: "control de embarazo",
+        text: "Revisión integral del embarazo de bajo, mediano y alto riesgo incluye consulta y Ultrasonido.",
+      },
+      {
+        title: "partos, cesáreas y legrados",
+        text: "Atención del embarazo de termino o legrado en caso de abortos espontáneos o abortos diferidos.",
+      },
+      {
+        title: "amaneza de aborto y parto pretemino",
+        text: "Manejo integral con medicamentos y reposo.",
+      },
+      {
+        title: "embarazo molar",
+        text: "Manejo integral de esta patologia.",
+      },
+      {
+        title: "ruptura de membranas",
+        text: "Atención del embarazo a cualquier edad gestacional en que ocurre ruptura de membranas (rompió la fuente).",
+      },
+      {
+        title: "embrazo ectópico",
+        text: "Diagnóstico y manejo quirúrgico del embarazo ectópico (fuera del útero o matriz) el cual constituye una urgencia quirúrgica.",
+      },
+      {
+        title: "embarazo y preclampsia",
+        text: "Manejo integral de los trastornos hipertensivos en el embarazo",
+      },
+    ],
   },
   {
     title: "Detección VPH",
@@ -64,7 +91,28 @@ export const services: IService[] = [
       "Además, nuestro equipo de expertos en salud femenina está altamente capacitado para brindar asesoramiento y orientación a nuestras pacientes en cada paso del proceso, desde la detección hasta el tratamiento, si es necesario.",
       "En nuestro centro, creemos que la detección temprana del VPH es fundamental para mantener una buena salud reproductiva, y estamos comprometidos en ayudar a nuestras pacientes a mantenerse informadas y cuidadas en todo momento.",
     ],
-    items: [],
+    items: [
+      {
+        title: "Colposcopía",
+        text: "Detección de lesiones en la mujer producidas por el VPH (Displasia).",
+      },
+      {
+        title: "androscopía",
+        text: "Detección de lesiones en el hombre producido por el VPH.",
+      },
+      {
+        title: "papanicolau",
+        text: "Toma de muestra para detección de VPH.",
+      },
+      {
+        title: "vaginoscopía y vulvoscopía",
+        text: "Detección de posibles lesiones en Vagina y Genitales externos.",
+      },
+      {
+        title: "biopsia",
+        text: " Toma de muestra en posible lesión (displasia) para su envió a Patología y clasificación de la lesión.",
+      },
+    ],
   },
   {
     title: "Tratamiento VPH",
@@ -76,6 +124,27 @@ export const services: IService[] = [
       "Además, nuestro equipo está altamente comprometido en ayudar a nuestras pacientes a mantener una buena salud reproductiva, brindando asesoramiento y orientación en todo momento.",
       "En nuestro centro, creemos que el tratamiento efectivo del VPH es fundamental para mantener una buena salud reproductiva, y estamos comprometidos en ayudar a nuestras pacientes a lograr este objetivo en un ambiente seguro y acogedor.",
     ],
-    items: [],
+    items: [
+      {
+        title: "electrocirugía (Cono o Conización)",
+        text: "Cirugía menor en el cervix para eliminar la Displasia.",
+      },
+      {
+        title: "electrocirugía (esferolisis)",
+        text: "Cirugía menor en el cervix para eliminar la Displasia.",
+      },
+      {
+        title: "Criocirugía (congelación)",
+        text: "Tratamiento de lesiones y Ulceras en cérvix mediante congelación con óxido nitroso.",
+      },
+      {
+        title: "Medicamentos",
+        text: "Diversos medicamentos enfocados a mejorar el sistema inmune o en su defecto para tratar las lesiones.",
+      },
+      {
+        title: "vacuna gardasil",
+        text: "Vacuna tetravalente enfocada a prevenir lesiones por el VPH en niños y niñas desde los 9 años hasta la edad adulta (3 aplicaciones).",
+      },
+    ],
   },
 ];

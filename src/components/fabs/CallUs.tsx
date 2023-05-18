@@ -11,10 +11,10 @@ export const CallFab = () => {
             viewport={{
                 once: true
             }}
-            className={`w-12 rounded-full bg-primary shadow-dark p-3`}
+            className={`w-14 rounded-full bg-primary shadow-dark p-3`}
         >
             <a
-                href="tel:6182590909"
+                href="tel:6181340926"
                 target="_blank"
                 rel="noopener noreferrer"
             >

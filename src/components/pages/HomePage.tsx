@@ -1,4 +1,4 @@
-import { Hero, Services, ContactSection } from '@/components'
+import { Hero, Services, ContactSection, Location } from '@/components'
 import React from 'react'
 import { FabIcons } from '../fabs'
 
@@ -7,6 +7,7 @@ export const HomePage = () => {
         <>
             <Hero />
             <Services />
+            <Location />
             <ContactSection />
             <FabIcons />
         </>
