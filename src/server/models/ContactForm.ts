@@ -30,11 +30,11 @@ const ContactFormSchema = new Schema<ISchema>({
     type: Date,
     default: Date.now(),
   },
-  status: {
-    type: String,
-    enum: contactFormStatusTypeArray,
-    default: contactFormStatusType.pending,
-  },
+  // status: {
+  //   type: String,
+  //   enum: [],
+  //   default: contactFormStatusType.pending,
+  // },
 });
 
 const ContactForm: Model<ISchema> =
