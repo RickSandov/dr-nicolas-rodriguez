@@ -3,7 +3,7 @@ import Button from '../button/Button'
 
 export const Hero = () => {
     return (
-        <section id='inicio' className='bg-no-repeat bg-cover bg-center bg-hero relative h-[105vh] md:h-[90vh] bg-primary w-full px-6 md:px-14 lg:px-20 xl:px-28 flex flex-col justify-center items-start gap-3' >
+        <section id='inicio' className='bg-no-repeat bg-cover bg-center bg-hero relative h-[105vh] md:h-[100vh] bg-primary w-full px-6 md:px-14 lg:px-20 xl:px-28 flex flex-col justify-center items-start gap-3' >
             <h1 className='font-bold text-secondary-light text-4xl sm:text-5xl' style={{
                 lineHeight: 1.3
             }} >
@@ -22,7 +22,7 @@ export const Hero = () => {
                         </strong>
                     </p>
                     <Button
-                        className='mt-2 text-xl uppercase font-bold w-full text-center bg-secondary-light  hover:translate-y-1 hover:shadow-sm hover:text-primary py-4 hover:bg-white'
+                        className='animate-pulse mt-2 text-xl uppercase font-bold w-full text-center bg-secondary-light hover:animate-none hover:translate-y-1 hover:shadow-sm hover:text-secondary py-4 hover:bg-primary-light'
                         href='#contacto'
                     >
                         Agendar cita

@@ -15,7 +15,8 @@ export function Services() {
                 <div className="md:sticky md:top-[180px]">
                     <div>
                         <h3 className='uppercase text-4xl text-secondary-light text-bold' >
-                            Servicios
+                            {/* Servicios */}
+                            Áreas de atención
                         </h3>
                         <span className='block w-24 h-1 bg-white' ></span>
                     </div>

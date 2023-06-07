@@ -54,7 +54,7 @@ export function FullService({ service }: { service: IService }) {
                             initial='closed'
                             className="mt-12 flex flex-col gap-8" >
                             {
-                                items.map(({ text, title }) => (
+                                items.map(({ text, title }, i) => (
                                     <motion.li
                                         variants={itemVariants}
                                         key={text}

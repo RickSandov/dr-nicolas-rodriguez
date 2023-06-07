@@ -3,15 +3,7 @@ import {
   contactFormStatusTypeArray,
   IContactForm,
 } from "@/interfaces";
-import {
-  model,
-  Model,
-  models,
-  Schema,
-  SchemaType,
-  SchemaTypes,
-  Types,
-} from "mongoose";
+import { model, Model, models, Schema, SchemaTypes, Types } from "mongoose";
 
 interface ISchema extends Omit<IContactForm, "patientId"> {
   patientId: Types.ObjectId;
@@ -30,11 +22,11 @@ const ContactFormSchema = new Schema<ISchema>({
     type: Date,
     default: Date.now(),
   },
-  // status: {
-  //   type: String,
-  //   enum: [],
-  //   default: contactFormStatusType.pending,
-  // },
+  status: {
+    type: String,
+    enum: contactFormStatusTypeArray,
+    default: contactFormStatusType.pending,
+  },
 });
 
 const ContactForm: Model<ISchema> =

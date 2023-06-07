@@ -1,12 +1,5 @@
-import { IPatient, contactFormStatusType, statusTypeArray } from "@/interfaces";
-import {
-  model,
-  Model,
-  models,
-  Schema,
-  SchemaType,
-  SchemaTypes,
-} from "mongoose";
+import { IPatient, statusType, statusTypeArray } from "@/interfaces";
+import { model, Model, models, Schema } from "mongoose";
 
 const PatientSchema = new Schema<IPatient>({
   name: {
@@ -22,7 +15,7 @@ const PatientSchema = new Schema<IPatient>({
   status: {
     type: String,
     enum: statusTypeArray,
-    default: contactFormStatusType.pending,
+    default: statusType.pending,
   },
 });
 
