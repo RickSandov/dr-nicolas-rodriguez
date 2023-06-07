@@ -1,23 +1,28 @@
 import { FC } from "react"
 import { Card } from "../card/Card"
-import { CallIcon, InstagramIcon, WaIcon } from "../icons"
+import { CallIcon, FacebookIcon, InstagramIcon, WaIcon } from "../icons"
 import { Form } from "./Form"
 
 const socialMedia = [
+    {
+        Icon: CallIcon,
+        to: 'tel:6188177741',
+        text: '618 817 7741'
+    },
     {
         Icon: WaIcon,
         to: 'https://wa.me/+526181340926',
         text: '618 134 0926'
     },
     {
+        Icon: FacebookIcon,
+        to: '#facebook',
+        text: 'Dr. Nicolás Rodriguez'
+    },
+    {
         Icon: InstagramIcon,
         to: '#insta',
         text: '@dr.nicolasrgz'
-    },
-    {
-        Icon: CallIcon,
-        to: '#facebook',
-        text: '618 134 0926'
     },
 ]
 
@@ -31,12 +36,14 @@ export const ContactSection = () => {
             <Card
                 className="flex flex-wrap gap-20 xl:gap-52 justify-between max-w-[95%] mb-20 mx-auto"
             >
-                <div className="max-w-[500px]" >
-                    <h2 className="font-medium text-4xl uppercase mb-5 text-black">solicita tu cita</h2>
-                    <p className="text-primary">
-                        ¡Llámanos o solicita una cita con nuestro equipo de expertos en ginecología! Completa el siguiente <a href="#formulario"><u><strong>formulario</strong></u> </a>y nos pondremos en contacto contigo para revisar nuestra disponibilidad de horarios y agendar tu cita.
-                    </p>
-                    <ul className="mt-12 flex flex-col gap-4">
+                <div className="max-w-[100%] flex xl:flex-col gap-4 flex-wrap" >
+                    <div className="max-w-[500px]">
+                        <h2 className="font-medium text-4xl uppercase mb-5 text-black">solicita tu cita</h2>
+                        <p className="text-primary">
+                            ¡Llámanos o solicita una cita con nuestro equipo de expertos en ginecología! Completa el siguiente <a href="#formulario"><u><strong>formulario</strong></u> </a>y nos pondremos en contacto contigo para revisar nuestra disponibilidad de horarios y agendar tu cita.
+                        </p>
+                    </div>
+                    <ul className="mt-12 flex flex-col gap-4 max-w-[500px]">
                         {
                             socialMedia.map((link, i) => (
                                 <li key={i} className="">

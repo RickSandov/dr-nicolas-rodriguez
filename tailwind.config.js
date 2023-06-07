@@ -10,7 +10,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'hero': "url('/hero.png')",
+        'hero': "url('/hero2.png')",
       },
       colors: {
         'primary': '#BA5B80',
@@ -29,6 +29,12 @@ module.exports = {
     },
     fontFamily: {
       sans: ['Lato', 'sans-serif']
+    },
+    gridTemplateColumns: {
+      'auto-fill': 'repeat(auto-fill, minmax(350px, 1fr))',
+    },
+    gridAutoRows: {
+      '22': '22rem',
     },
   },
   plugins: [],

@@ -30,7 +30,7 @@ export const NavLinks = () => {
                         <a href="#servicios"
                             className={`text-primary uppercase cursor-pointer text-sm font-bold px-3 py-2 hover:bg-secondary-light transition-all rounded-full`}
                         >
-                            especialidades
+                            áreas de atención
                         </a>
                     </li>
                     <li>
@@ -41,7 +41,7 @@ export const NavLinks = () => {
                         </a>
                     </li>
                     <li className='py-2'>
-                        <a href="#agendar"
+                        <a href="#contacto"
                             className={`text-white uppercase cursor-pointer text-sm font-bold px-3 py-2 hover:bg-secondary-light hover:text-primary transition-all bg-primary rounded-full`}>
                             {/* agendar cita */}
                             contacto

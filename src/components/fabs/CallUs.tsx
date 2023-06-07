@@ -14,7 +14,7 @@ export const CallFab = () => {
             className={`w-14 rounded-full bg-primary shadow-dark p-3`}
         >
             <a
-                href="tel:6181340926"
+                href="tel:6188177741"
                 target="_blank"
                 rel="noopener noreferrer"
             >

@@ -4,13 +4,14 @@ import { IService, services } from "./data";
 import { AnimatePresence, motion } from "framer-motion";
 import { Mom } from "../icons";
 import { itemVariants, parentVariants } from "@/utils/motion";
+import { FullService } from "./FullService";
 
 export function Services() {
     const [activeService, setActiveService] = useState(services[0]);
 
     return (
         <main id='servicios' className='relative -top-24 rounded-2xl bg-primary max-w-[100%] mx-auto md:flex transition-all shadow-dark' >
-            <aside className={`py-14 px-4 md:px-16 min-h-[300px] md:h-[1000px] relative`} >
+            <aside className={`py-14 px-4 md:px-16 min-h-[300px] md:min-h-[400px] relative`} >
                 <div className="md:sticky md:top-[180px]">
                     <div>
                         <h3 className='uppercase text-4xl text-secondary-light text-bold' >
@@ -28,7 +29,7 @@ export function Services() {
                         }
                     </ul>
                 </div>
-                <div className="absolute hidden md:block bottom-0 left-0 pointer-events-none transition-all opacity-60" >
+                <div className="absolute hidden md:block bottom-0 left-0 pointer-events-none transition-all opacity-60 z-10" >
                     <Mom />
                 </div>
             </aside>
@@ -40,61 +41,6 @@ export function Services() {
         </main>
     )
 }
-
-function FullService({ service }: { service: IService }) {
-    const { title, Icon, description, items } = service;
-
-    return (
-        <motion.article
-            key={service.title}
-            initial={{ y: '20%', opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: '20%', opacity: 0 }}
-            transition={{
-                delay: 0,
-                duration: .4
-            }}
-            className="rounded-3xl bg-white px-6 py-8 md:px-14 md:py-12 lg:px-16 shadow-dark md:mr-6"
-        >
-            <header className="mb-8">
-                <div className="fill-primary w-20" >
-                    <Icon />
-                </div>
-                <h2 className="text-2xl mt-4 md:mt-6 font-medium text-black" >{`Departamento de ${title}`}</h2>
-            </header>
-            {
-                description.map((text, index) => (
-                    <p
-                        key={index}
-                        className="text-primary text-justify leading-relaxed mb-6"
-                    >{text}</p>
-                ))
-            }
-            <motion.ul
-                variants={parentVariants}
-                whileInView='open'
-                viewport={{
-                    once: true
-                }}
-                initial='closed'
-                className="mt-12 flex flex-col gap-8" >
-                {
-                    items.map(({ text, title }) => (
-                        <motion.li
-                            variants={itemVariants}
-                            key={text}
-                            className="shadow-light py-4 px-4 rounded-xl w-[100%]"
-                        >
-                            <h3 className="uppercase font-bold mb-4 text-black" >{title}</h3>
-                            <p className="text-primary leading-relaxed ">{text}</p>
-                        </motion.li>
-                    ))
-                }
-            </motion.ul>
-        </motion.article>
-    )
-}
-
 
 function ServicesNavItem({ title, Icon, isActive, setIsActive }: { title: string, Icon: FC, isActive: boolean, setIsActive: () => void }) {
 

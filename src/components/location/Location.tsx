@@ -15,11 +15,11 @@ export const Location = () => {
             >
                 <aside className='w-full flex flex-wrap gap-10' >
                     <div className=''>
-                        <h2 className=' font-medium text-4xl uppercase mb-5 text-black' >
-                            Nuestra ubicación
+                        <h2 className=' font-medium text-4xl uppercase mb-5 text-secondary' >
+                            ubicación
                         </h2>
-                        <p className='max-w-[400px] text-justify'>
-                            Encuéntranos en una ubicación conveniente y de fácil acceso. Te ofrecemos un ambiente cómodo y seguro para tu visita. Si tienes alguna pregunta sobre cómo llegar, no dudes en contactarnos. ¡Esperamos recibirte pronto en nuestro centro médico!
+                        <p className='max-w-[400px] text-justify text-black'>
+                            Te ofrecemos un ambiente cómodo y seguro para tu visita. Si tienes alguna pregunta sobre cómo llegar, no dudes en contactarnos. ¡Esperamos recibirte pronto!
                         </p>
                         <a
                             href='https://www.google.com/maps/place/Dr.+Nicol%C3%A1s+Rodr%C3%ADguez+Luna/@24.003196,-104.660713,14z/data=!4m6!3m5!1s0x869bb7e755fe45dd:0xf0487e7b94a6e217!8m2!3d24.0031958!4d-104.6607134!16s%2Fg%2F11btlzdvjb?hl=es'

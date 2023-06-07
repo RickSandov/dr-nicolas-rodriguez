@@ -35,7 +35,7 @@ export const Gallery = () => {
                 }}
                 navigation={true}
                 modules={[Autoplay, Pagination, Navigation]}
-                className="flex-1 w-[500px] h-[500px] md:h-[400px] md:min-w-[500px] min-w-[200px] max-w-full"
+                className="flex-1 w-[500px] h-[500px] md:h-[400px] sm:min-w-[500px] min-w-[200px] max-w-full"
             >
                 {
                     galleryItem.map((url, i) => (

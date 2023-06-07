@@ -10,3 +10,4 @@ export * from "./Call";
 export * from "./Wa";
 export * from "./InstagramIcon";
 export * from "./Navigate";
+export * from "./PlusIcon";
