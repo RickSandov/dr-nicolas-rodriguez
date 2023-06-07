@@ -57,7 +57,7 @@ export function FullService({ service }: { service: IService }) {
                                 items.map(({ text, title }, i) => (
                                     <motion.li
                                         variants={itemVariants}
-                                        key={text}
+                                        key={i}
                                         className="shadow-light py-4 px-4 rounded-xl w-[100%]"
                                     >
                                         <h3 className="uppercase font-bold mb-4 text-primary" >{title}</h3>
