@@ -3,7 +3,7 @@ import { FC, useEffect, useCallback, useRef, useState } from "react";
 import { IService, services } from "./data";
 import { AnimatePresence, motion } from "framer-motion";
 import { Mom } from "../icons";
-import { itemVariants, parentVariants } from "@/utils/motion";
+import { fadeIn, itemVariants, parentVariants } from "@/utils/motion";
 import { FullService } from "./FullService";
 
 export function Services() {
@@ -27,12 +27,27 @@ export function Services() {
         <main id='servicios' className='relative bg-primary max-w-[100%] mx-auto md:flex transition-all' >
             {/* <main id='servicios' className='relative -top-24 rounded-2xl bg-primary max-w-[100%] mx-auto md:flex transition-all shadow-dark' > */}
             <aside className={`pt-14 md:py-14 md:px-16 md:min-h-[400px] relative`} >
-                <div className="hidden md:block md:sticky md:top-[180px]">
+                <motion.div
+                    variants={fadeIn('up', 'spring', .2, 1)}
+                    initial='hidden'
+                    whileInView='show'
+                    viewport={{
+                        once: true,
+                        margin: '50px'
+                    }}
+                    className="hidden md:block md:sticky md:top-[180px]">
                     <div>
-                        <h3 className='uppercase text-4xl text-secondary-light text-bold' >
+                        <motion.h3
+                            variants={fadeIn('up', 'spring', .2, 1)}
+                            initial='hidden'
+                            whileInView='show'
+                            viewport={{
+                                once: true,
+                            }}
+                            className='uppercase text-4xl text-secondary-light text-bold' >
                             {/* Servicios */}
                             Áreas de atención
-                        </h3>
+                        </motion.h3>
                         <span className='block w-24 h-1 bg-white' ></span>
                     </div>
                     <ul
@@ -55,21 +70,36 @@ export function Services() {
                             ))
                         }
                     </ul>
-                </div>
+                </motion.div>
                 <div className="absolute hidden md:block bottom-0 left-0 pointer-events-none transition-all opacity-60" >
                     <Mom />
                 </div>
             </aside>
 
             {/* Mobile */}
-            <div className="px-4 block md:hidden" >
-                <h3 className='uppercase text-4xl text-secondary-light text-bold' >
+            <motion.div
+                variants={fadeIn('up', 'spring', .2, 1)}
+                initial='hidden'
+                whileInView='show'
+                viewport={{
+                    once: true,
+                    margin: '50px'
+                }}
+                className="px-4 block md:hidden" >
+                <h3
+                    className='uppercase text-4xl text-secondary-light text-bold' >
                     {/* Servicios */}
                     Áreas de atención
                 </h3>
                 <span className='block w-24 h-1 bg-white' ></span>
-            </div>
-            <ul
+            </motion.div>
+            <motion.ul
+                variants={fadeIn('up', 'spring', .2, 1)}
+                initial='hidden'
+                whileInView='show'
+                viewport={{
+                    once: true,
+                }}
                 id='lista-servicios'
                 className={`sticky transition-all duration-100 ${isNavVisible ? 'top-20' : 'top-0'} z-10 flex md:hidden px-4 mb-20 shadow-b-dark departments-list mt-8 gap-12 overflow-x-scroll md:overflow-visible py-6 bg-primary`} >
                 {
@@ -88,7 +118,7 @@ export function Services() {
                         } />
                     ))
                 }
-            </ul>
+            </motion.ul>
             {/* Mobile */}
 
             <div className="w-[95%] mx-auto md:max-w-[75%] relative -translate-y-16 md:-translate-y-12" >

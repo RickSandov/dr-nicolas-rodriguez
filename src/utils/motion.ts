@@ -117,6 +117,8 @@ export const fadeIn = (
       delay,
       duration,
       ease: "easeOut",
+      delayChildren: 0.3,
+      staggerChildren: 0.2,
     },
   },
 });

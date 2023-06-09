@@ -23,7 +23,10 @@ export function FullService({ service }: { service: IService }) {
             id='servicio'
             key={service.title}
             initial={{ y: '20%', opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{
+                once: true
+            }}
             exit={{ y: '20%', opacity: 0 }}
             transition={{
                 delay: 0,

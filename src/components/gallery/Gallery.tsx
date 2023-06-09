@@ -12,6 +12,8 @@ import Image from "next/image";
 import { useContext } from "react";
 import { GalleryContext } from "@/contexts/gallery";
 import { GalleryFullScreen } from "../galleryFullScreen/GalleryFullScreen";
+import { motion } from 'framer-motion';
+import { fadeIn } from "@/utils/motion";
 
 
 const galleryItem = [
@@ -25,7 +27,15 @@ export const Gallery = () => {
     const { setActiveGallery, isFullScreen } = useContext(GalleryContext);
     return (
         <>
-            <div className="rounded-2xl p-3 bg-white shadow-dark max-w-full">
+            <motion.div
+                variants={fadeIn('left', 'spring', .2, 1)}
+                initial='hidden'
+                whileInView='show'
+                viewport={{
+                    once: true,
+                    margin: '50px'
+                }}
+                className="rounded-2xl p-3 bg-white shadow-dark max-w-full">
                 <div className='overflow-hidden rounded-xl'>
                     <Swiper
                         spaceBetween={30}
@@ -61,7 +71,7 @@ export const Gallery = () => {
                         isFullScreen && <GalleryFullScreen />
                     }
                 </div>
-            </div>
+            </motion.div>
 
         </>
     )
