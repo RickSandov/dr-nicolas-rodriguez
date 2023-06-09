@@ -32,7 +32,7 @@ export const services: IService[] = [
       },
       {
         title: "incontinencia urinaria",
-        text: "Manejo de la mujer con Incapacidad de contener la orina, ya sea haciendo ejercicio, esfuerzos, o en momentos que se quiera contener la orina y no se pueda. Atendemos sus causas con medicamento y/o cirugía.",
+        text: "Manejo de la mujer con incapacidad para contener la orina, atendiendo sus causas con medicamento o cirugía.",
       },
       {
         title: "orientación en planificación familiar",
