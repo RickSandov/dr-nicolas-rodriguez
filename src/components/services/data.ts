@@ -23,7 +23,7 @@ export const services: IService[] = [
     ],
     items: [
       {
-        title: "climaterior y menopausia",
+        title: "climaterio y menopausia",
         text: "Manejo integral de los síntomas, prevención de osteoporosis, trastornos circulatorios, cardiovasculares y emocionales.",
       },
       {
@@ -32,7 +32,7 @@ export const services: IService[] = [
       },
       {
         title: "incontinencia urinaria",
-        text: "Manejo en la mujer de la perdida de orina con el esfuerzo o de urgencia con medicamento o cirugía.",
+        text: "Manejo de la mujer con Incapacidad de contener la orina, ya sea haciendo ejercicio, esfuerzos, o en momentos que se quiera contener la orina y no se pueda. Atendemos sus causas con medicamento y/o cirugía.",
       },
       {
         title: "orientación en planificación familiar",
