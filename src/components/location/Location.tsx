@@ -36,7 +36,7 @@ export const Location = () => {
                                 once: true,
                                 margin: '50px'
                             }}
-                            className='max-w-[400px] text-justify text-black'>
+                            className='max-w-[400px] md:text-justify text-black'>
                             Te ofrecemos un ambiente cómodo y seguro para tu visita. Si tienes alguna pregunta sobre cómo llegar, no dudes en contactarnos. ¡Esperamos recibirte pronto!
                         </motion.p>
                         <motion.div

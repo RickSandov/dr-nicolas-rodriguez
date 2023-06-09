@@ -59,7 +59,7 @@ export const DrSection = () => {
                         viewport={{
                             once: true,
                         }}
-                        className='text-black md:w-[450px] max-w-full text-justify' >
+                        className='text-black md:w-[450px] max-w-full md:text-justify' >
                         <strong>Médico Gineco-obstetra y Colposcopista</strong>, egresado de la Universidad Juárez del Estado de Durango, quien cuenta con cerca de <strong className='bg-secondary-light inline-block px-1' >20 años de experiencia</strong> en el cuidado y manejo de la <strong className='bg-secondary-light inline-block px-1' >salud de la mujer;</strong> en el embarazo y en <strong>todas las etapas</strong> de la vida, desde la adolescencia hasta la madurez plena.
                     </motion.p>
                 </div>
@@ -110,6 +110,7 @@ export const DrSection = () => {
                 whileInView='show'
                 viewport={{
                     once: true,
+                    margin: '50px'
                 }}
                 className='mt-14 max-w-full w-[800px] flex'
             >

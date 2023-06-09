@@ -80,7 +80,7 @@ export function FullService({ service }: { service: IService }) {
                 description.map((text, index) => (
                     <p
                         key={index}
-                        className="text-black text-justify leading-relaxed mb-6"
+                        className="text-black md:text-justify leading-relaxed mb-6"
                     >{text}</p>
                 ))
             }
