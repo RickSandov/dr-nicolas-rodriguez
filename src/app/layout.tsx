@@ -22,7 +22,7 @@ export default function RootLayout({
   const headersList = headers();
   const fullUrl = headersList.get('referer') || "";
   return (
-    <html lang="en" className='bg-white scroll-pt-[50px] sm:scroll-pt-[100px] text-primary' >
+    <html lang="en" className='bg-white scroll-pt-[50px] sm:scroll-pt-[100px] text-primary overflow-x-hidden' >
       <title>
         Dr. Nicolás Rodríguez Luna
       </title>
