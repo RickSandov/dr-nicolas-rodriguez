@@ -10,7 +10,7 @@ export const Location = () => {
     return (
         <section
             id='ubicacion'
-            className='py-10 mx-auto relative bg-gradient-to-r from-white to-secondary-light '
+            className='max-w-full overflow-x-hidden py-10 mx-auto relative bg-gradient-to-r from-white to-secondary-light '
         >
             <div
                 className='text-primary px-6 py-14 md:px-14 lg:px-16 lg:py-20 lg:pt-14 w-[1200px] max-w-[100%] mx-auto '
