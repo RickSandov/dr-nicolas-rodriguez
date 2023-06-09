@@ -8,11 +8,26 @@ import { FullService } from "./FullService";
 
 export function Services() {
     const [activeService, setActiveService] = useState(services[0]);
+    const [isNavVisible, setIsNavVisible] = useState(false);
+
+    useEffect(() => {
+        const nav = document.getElementById('nav');
+        const checker = (e: Event) => {
+            if (nav) {
+                setIsNavVisible(nav.getBoundingClientRect().top > 0)
+            }
+        }
+        document.addEventListener('scroll', checker);
+        return () => {
+            document.removeEventListener('scroll', checker);
+        }
+    }, [])
 
     return (
-        <main id='servicios' className='relative -top-24 rounded-2xl bg-primary max-w-[100%] mx-auto md:flex transition-all shadow-dark' >
-            <aside className={`py-14 px-4 md:px-16 min-h-[300px] md:min-h-[400px] relative`} >
-                <div className="md:sticky md:top-[180px]">
+        <main id='servicios' className='relative bg-primary max-w-[100%] mx-auto md:flex transition-all' >
+            {/* <main id='servicios' className='relative -top-24 rounded-2xl bg-primary max-w-[100%] mx-auto md:flex transition-all shadow-dark' > */}
+            <aside className={`pt-14 md:py-14 md:px-16 md:min-h-[400px] relative`} >
+                <div className="hidden md:block md:sticky md:top-[180px]">
                     <div>
                         <h3 className='uppercase text-4xl text-secondary-light text-bold' >
                             {/* Servicios */}
@@ -25,15 +40,57 @@ export function Services() {
                         className="departments-list mt-12 flex gap-12 overflow-x-scroll md:overflow-visible pb-6 md:flex-col md:gap-10 md:mt-24" >
                         {
                             services.map((service) => (
-                                <ServicesNavItem title={service.title} Icon={service.Icon} key={service.title} isActive={activeService.title === service.title} setIsActive={() => setActiveService(service)} />
+                                <ServicesNavItem title={service.title} Icon={service.Icon} key={service.title} isActive={activeService.title === service.title} setIsActive={() => {
+                                    setActiveService(service);
+                                    const serviceContainer = document.getElementById('servicio');
+                                    console.log({ serviceContainer })
+                                    if (serviceContainer?.getBoundingClientRect()) {
+                                        window.scroll({
+                                            top: serviceContainer?.getBoundingClientRect().top + window.scrollY - 110
+                                        })
+                                    }
+                                }
+
+                                } />
                             ))
                         }
                     </ul>
                 </div>
-                <div className="absolute hidden md:block bottom-0 left-0 pointer-events-none transition-all opacity-60 z-10" >
+                <div className="absolute hidden md:block bottom-0 left-0 pointer-events-none transition-all opacity-60" >
                     <Mom />
                 </div>
             </aside>
+
+            {/* Mobile */}
+            <div className="px-4 block md:hidden" >
+                <h3 className='uppercase text-4xl text-secondary-light text-bold' >
+                    {/* Servicios */}
+                    Áreas de atención
+                </h3>
+                <span className='block w-24 h-1 bg-white' ></span>
+            </div>
+            <ul
+                id='lista-servicios'
+                className={`sticky transition-all duration-100 ${isNavVisible ? 'top-20' : 'top-0'} z-10 flex md:hidden px-4 mb-20 shadow-b-dark departments-list mt-8 gap-12 overflow-x-scroll md:overflow-visible py-6 bg-primary`} >
+                {
+                    services.map((service) => (
+                        <ServicesNavItem title={service.title} Icon={service.Icon} key={service.title} isActive={activeService.title === service.title} setIsActive={() => {
+                            setActiveService(service);
+                            const serviceContainer = document.getElementById('servicio');
+                            console.log({ serviceContainer })
+                            if (serviceContainer?.getBoundingClientRect()) {
+                                window.scroll({
+                                    top: serviceContainer?.getBoundingClientRect().top + window.scrollY - (window.innerHeight >= 769 ? 110 : 170)
+                                })
+                            }
+                        }
+
+                        } />
+                    ))
+                }
+            </ul>
+            {/* Mobile */}
+
             <div className="w-[95%] mx-auto md:max-w-[75%] relative -translate-y-16 md:-translate-y-12" >
                 <AnimatePresence>
                     <FullService service={activeService} />

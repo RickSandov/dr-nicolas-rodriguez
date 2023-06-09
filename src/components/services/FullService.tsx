@@ -20,6 +20,7 @@ export function FullService({ service }: { service: IService }) {
 
     return (
         <motion.article
+            id='servicio'
             key={service.title}
             initial={{ y: '20%', opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}

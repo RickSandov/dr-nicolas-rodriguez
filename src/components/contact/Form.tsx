@@ -30,6 +30,7 @@ export const Form = () => {
 
     return (
         <Card
+            id='formulario'
             noPadding
             className='flex-1 md:min-w-[420px] max-w-full xl:max-w-[550px] bg-gradient-to-br from-primary to-secondary text-white px-6 py-8 md:px-8 md:py-16'
         >
@@ -39,7 +40,7 @@ export const Form = () => {
 
                 {({ handleSubmit }) => (
                     <form id='formulario' className='flex flex-col gap-3' onSubmit={handleSubmit} >
-                        <h4 className='font-bold text-secondary-light text-xl mb-10 text-center'>Formulario de contacto</h4>
+                        <h4 className=' text-secondary-light text-2xl mb-10 text-center'>Formulario de contacto</h4>
                         <div className="flex flex-col gap-4">
                             <Input
                                 name='name'
@@ -60,7 +61,7 @@ export const Form = () => {
                             />
                         </div>
                         <p className='text-center text-sm'>Tu bienestar es nuestra prioridad y estamos aquí para brindarte la mejor atención médica. ¡Esperamos poder atenderte pronto!</p>
-                        <Button className='mt-20 w-full md:w-fit self-end ' >
+                        <Button className='mt-5 md:mt-10 w-full md:w-fit self-end ' >
                             Enviar formulario
                         </Button>
                     </form>

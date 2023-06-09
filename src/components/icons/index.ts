@@ -11,3 +11,6 @@ export * from "./Wa";
 export * from "./InstagramIcon";
 export * from "./Navigate";
 export * from "./PlusIcon";
+export { ArrowDown } from "./ArrowDown";
+export { DoctorIcon } from "./DoctorIcon";
+export { DoctorIconWhite } from "./DoctorIconWhite";

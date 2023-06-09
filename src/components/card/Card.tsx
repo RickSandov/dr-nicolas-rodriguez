@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import React, { PropsWithChildren } from 'react'
 
 
@@ -13,7 +14,7 @@ export const Card = ({ children, className, element, id = '', noPadding = false 
         case 'section':
             return (
                 <section
-                    className={`rounded-3xl bg-white ${noPadding ? '' : 'px-6 py-14 md:px-14 md:py-12 lg:px-16 lg:py-20'} shadow-dark mx-auto ${className}`}
+                    className={cn(`rounded-3xl bg-white ${noPadding ? '' : 'px-6 py-14 md:px-14 md:py-12 lg:px-16 lg:py-20'} shadow-dark mx-auto ${className}`)}
                     id={id}
                 >
                     {children}
@@ -23,7 +24,8 @@ export const Card = ({ children, className, element, id = '', noPadding = false 
         default:
             return (
                 <div
-                    className={`rounded-3xl bg-white ${noPadding ? '' : 'px-6 py-14 md:px-14 md:py-12 lg:px-16 lg:py-20'} shadow-dark ${className}`}>
+                    id={id}
+                    className={cn(`rounded-3xl bg-white ${noPadding ? '' : 'px-6 py-14 md:px-14 md:py-12 lg:px-16 lg:py-20'} shadow-dark ${className}`)}>
                     {children}
                 </div>
             )

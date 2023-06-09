@@ -15,47 +15,54 @@ import { GalleryFullScreen } from "../galleryFullScreen/GalleryFullScreen";
 
 
 const galleryItem = [
-    'fachada-dr.jpg',
     'dr-nicolas.jpg',
+    'consultorio.jpg',
+    'consultorio2.jpg',
+    'fachada-dr.jpg',
 ]
 
 export const Gallery = () => {
     const { setActiveGallery, isFullScreen } = useContext(GalleryContext);
     return (
         <>
-            <Swiper
-                spaceBetween={30}
-                centeredSlides={true}
-                autoplay={{
-                    delay: 4500,
-                    disableOnInteraction: false,
-                }}
-                pagination={{
-                    clickable: true,
-                }}
-                navigation={true}
-                modules={[Autoplay, Pagination, Navigation]}
-                className="flex-1 w-[500px] h-[500px] md:h-[400px] sm:min-w-[500px] min-w-[200px] max-w-full"
-            >
-                {
-                    galleryItem.map((url, i) => (
-                        <SwiperSlide
-                            className="flex justify-center items-center"
-                            key={i}
-                            onClick={() => setActiveGallery(galleryItem, url)}
-                        >
-                            <Image
-                                src={`/${url}`}
-                                alt={url}
-                                fill
-                                className="object-cover" />
-                        </SwiperSlide>
-                    ))
-                }
-            </Swiper>
-            {
-                isFullScreen && <GalleryFullScreen />
-            }
+            <div className="rounded-2xl p-3 bg-white shadow-dark max-w-full">
+                <div className='overflow-hidden rounded-xl'>
+                    <Swiper
+                        spaceBetween={30}
+                        centeredSlides={true}
+                        autoplay={{
+                            delay: 4500,
+                            disableOnInteraction: false,
+                        }}
+                        pagination={{
+                            clickable: true,
+                        }}
+                        navigation={true}
+                        modules={[Autoplay, Pagination, Navigation]}
+                        className="flex-1 w-[500px] h-[500px] md:h-[400px] sm:min-w-[500px] min-w-[200px] max-w-full m-0"
+                    >
+                        {
+                            galleryItem.map((url, i) => (
+                                <SwiperSlide
+                                    className="flex bg-black justify-center items-center"
+                                    key={i}
+                                    onClick={() => setActiveGallery(galleryItem, url)}
+                                >
+                                    <Image
+                                        src={`/${url}`}
+                                        alt={url}
+                                        fill
+                                        className="object-cover" />
+                                </SwiperSlide>
+                            ))
+                        }
+                    </Swiper>
+                    {
+                        isFullScreen && <GalleryFullScreen />
+                    }
+                </div>
+            </div>
+
         </>
     )
 }
