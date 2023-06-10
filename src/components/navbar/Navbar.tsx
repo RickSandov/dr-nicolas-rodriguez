@@ -4,8 +4,28 @@ import { useEffect, useRef } from 'react'
 import { Logo, LogoText } from '../icons'
 import { NavLinks } from './NavLinks'
 import { useRouter } from 'next/navigation'
-import { motion } from 'framer-motion';
+import { Variant, Variants, motion } from 'framer-motion';
 import { fadeIn, zoomIn } from '@/utils/motion'
+
+const navbarVariant: Variants = {
+    hidden: {
+        x: -100,
+        opacity: 0,
+    },
+    show: {
+        x: 0,
+        y: 0,
+        // transform: 'fixed',
+        opacity: 1,
+        transition: {
+            delay: 0,
+            duration: 1,
+            ease: "easeOut",
+            delayChildren: 0.3,
+            staggerChildren: 0.2,
+        },
+    },
+}
 
 export const Navbar = () => {
 
@@ -41,7 +61,7 @@ export const Navbar = () => {
 
     return (
         <motion.nav
-            variants={fadeIn('', 'spring', .5, 0)}
+            variants={fadeIn('', 'spring', .5, 1)}
             initial='hidden'
             animate='show'
             viewport={{
