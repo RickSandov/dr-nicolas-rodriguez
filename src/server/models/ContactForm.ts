@@ -6,21 +6,28 @@ import {
 import { model, Model, models, Schema, SchemaTypes, Types } from "mongoose";
 
 interface ISchema extends Omit<IContactForm, "patientId"> {
-  patientId: Types.ObjectId;
+  // patientId: Types.ObjectId;
 }
 
 const ContactFormSchema = new Schema<ISchema>({
-  patientId: {
-    type: SchemaTypes.ObjectId,
-    ref: "Patient",
+  // patientId: {
+  //   type: SchemaTypes.ObjectId,
+  //   ref: "Patient",
+  //   required: true,
+  // },
+  name: {
+    type: String,
     required: true,
+  },
+  phoneNumber: {
+    type: String,
   },
   message: {
     type: String,
   },
   receivedAt: {
     type: Date,
-    default: Date.now(),
+    default: () => Date.now(),
   },
   status: {
     type: String,

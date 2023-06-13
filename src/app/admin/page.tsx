@@ -1,11 +1,24 @@
+import { MyCalendar } from '@/components/admin/Calendar/Calendar';
+import { ContactFormsList } from '@/components/pages/admin/ContactFormsList';
+import { getContactForms } from '@/server/helpers';
 import React from 'react'
-import { AdminHome } from '@/components/pages/admin';
 
-const Page = () => {
+const Page = async () => {
+    const contactFormsArray = await getContactForms();
+
     return (
-        <>
-            <AdminHome />
-        </>
+        <div>
+            {/* Crear componente */}
+            <ContactFormsList contactFormsArray={contactFormsArray} />
+            <MyCalendar events={[
+                {
+                    id: '123',
+                    title: 'Ricardo Sandoval',
+                    start: new Date('2023-06-14T12:00'),
+                    end: new Date('2023-06-14T13:00')
+                }
+            ]} />
+        </div>
     )
 }
 

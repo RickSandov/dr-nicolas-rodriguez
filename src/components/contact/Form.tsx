@@ -3,13 +3,16 @@
 import { Field, Formik, FormikHelpers } from 'formik'
 import * as Yup from 'yup';
 import { Card } from '../card/Card';
-import { FormEventHandler, useId } from 'react';
+import { FormEventHandler, useId, useState } from 'react';
 import { Input } from './Input';
 import Button from '../button/Button';
+import { api } from '@/api';
+import { toast } from 'react-hot-toast';
+import { format, parseISO } from 'date-fns';
 
 const validationSchema = Yup.object({
     name: Yup.string().required('Campo requerido'),
-    phoneNumber: Yup.string().required('Campo requerido').max(10, 'El número debe ser de 10 dígitos'),
+    phoneNumber: Yup.string().required('Campo requerido').max(10, 'El número debe ser de 10 dígitos').min(10, 'El número debe ser de 10 dígitos'),
     message: Yup.string()
 })
 
@@ -21,9 +24,25 @@ const initialValues = {
 
 export const Form = () => {
 
-    const onSubmit = (values: (typeof initialValues), helpers: FormikHelpers<typeof initialValues>) => {
+    const [isLoading, setIsLoading] = useState(false);
+    const onSubmit = async (values: (typeof initialValues), helpers: FormikHelpers<typeof initialValues>) => {
 
-        console.log({ 'enviar': values })
+        const req = api.post('/contact', values);
+
+        setIsLoading(true);
+        toast.promise(req, {
+            loading: 'enviando',
+            success: ({ data }) => {
+                console.log({ data });
+                setIsLoading(false);
+                return data;
+            },
+            error: () => {
+                setIsLoading(false);
+                return 'ocurrió un error, inténtalo de nuevo más tarde'
+            }
+        })
+
     }
 
     const fromikProps = { initialValues, validationSchema, onSubmit }

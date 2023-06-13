@@ -1,4 +1,3 @@
-import { Types } from "mongoose";
 import { ObjectValues } from ".";
 
 export const contactFormStatusType = {
@@ -13,13 +12,21 @@ export const contactFormStatusTypeArray = Object.values(contactFormStatusType);
 export type ContactFormSStatusType = ObjectValues<typeof contactFormStatusType>;
 
 export interface IContactForm {
-  patientId: string;
+  // patientId: string;
+  _id: string;
+  name: string;
+  phoneNumber: string;
   message: string;
   receivedAt: Date;
   status: ContactFormSStatusType;
 }
 
-export interface IParsedContactForm extends Omit<IContactForm, "patientId"> {
+export interface IParsedContactForm extends Omit<IContactForm, "receivedAt"> {
+  receivedAt: string;
+}
+
+export interface ISimpleContactForm {
   name: string;
   phoneNumber: string;
+  message: string;
 }

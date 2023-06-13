@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.rbc-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    @apply gap-3;
+}
+
+.rbc-toolbar-label {
+    font-size: 30px;
+    text-transform: capitalize;
+    width: 100%;
+}
+
+.rbc-event {
+    @apply bg-secondary;
+}
+
+.rbc-event.rbc-selected {
+    @apply bg-primary;
+
+}
+
+
+.rbc-agenda-event-cell {
+    @apply text-black;
+}
+.rbc-agenda-time-cell {
+    @apply text-white;
+    @apply bg-secondary;
+}
+
+.rbc-agenda-date-cell {
+    @apply text-black;
+}

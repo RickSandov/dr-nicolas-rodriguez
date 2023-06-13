@@ -8,4 +8,5 @@ export interface IAppointment {
   canceled?: boolean;
   resume: string;
   services: string[];
+  info: string;
 }

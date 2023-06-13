@@ -1,17 +1,15 @@
 import { IParsedContactForm, contactFormStatusType } from "@/interfaces"
-import { CallIcon, PlusIcon } from "../icons"
+import { PlusIcon } from "../icons"
 import { useMemo } from "react"
 import { cn } from "@/lib/utils"
-import { format } from "date-fns"
-import es from "date-fns/locale/es"
 import { CallPopOver } from "./CallPopOver"
+import { format, parseISO } from "date-fns"
 
-// interface Props extends Omit<IParsedContactForm, 'receivedAt'> {
 interface Props extends IParsedContactForm {
-    // receivedAt: string
+    onClick: () => void
 }
 
-export const ContactFormCard = ({ name, phoneNumber, message, receivedAt, status }: Props) => {
+export const ContactFormCard = ({ name, phoneNumber, message, receivedAt, status, onClick }: Props) => {
 
     const statusClassName = useMemo(() => {
         const styles = {
@@ -54,11 +52,11 @@ export const ContactFormCard = ({ name, phoneNumber, message, receivedAt, status
             <div className="flex items-center justify-between mt-5">
                 <div className="flex gap-1">
                     <CallPopOver className={statusClassName.icon} phoneNumber={phoneNumber} />
-                    <PlusIcon className={`w-9 h-9 p-2 rounded-full fill-white stroke-white transition-all ${statusClassName.icon}`} />
+                    <button onClick={onClick} >
+                        <PlusIcon className={`w-9 h-9 p-2 rounded-full fill-white stroke-white transition-all ${statusClassName.icon}`} />
+                    </button>
                 </div>
-                <p className={`text-right font-bold ${statusClassName.accent}`} >{format(receivedAt, 'dd MMMM HH:mm', {
-                    locale: es
-                })}</p>
+                <p className={`text-right font-bold ${statusClassName.accent}`} >{receivedAt}</p>
             </div>
         </li>
     )

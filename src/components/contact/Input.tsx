@@ -29,7 +29,7 @@ export const Input = ({ className = "", name, type = 'text', placeholder, nameDi
                         name={name}
                         as={type}
                         placeholder={placeholder}
-                        className={`w-[100%] px-3 py-2 rounded-md text-primary bg-white h-36 resize-none`}
+                        className={`w-[100%] px-3 py-2 rounded-md text-black bg-white h-36 resize-none`}
                     />
                 )
 
@@ -40,7 +40,7 @@ export const Input = ({ className = "", name, type = 'text', placeholder, nameDi
                         type={type}
                         name={name}
                         placeholder={placeholder}
-                        className={`w-[100%] px-3 py-2 rounded-md text-primary bg-white`}
+                        className={`w-[100%] px-3 py-2 rounded-md text-black bg-white`}
                     />
                 )
 
