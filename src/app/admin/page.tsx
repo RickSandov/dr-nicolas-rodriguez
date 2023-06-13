@@ -1,10 +1,13 @@
+import { api } from '@/api';
 import { MyCalendar } from '@/components/admin/Calendar/Calendar';
 import { ContactFormsList } from '@/components/pages/admin/ContactFormsList';
-import { getContactForms } from '@/server/helpers';
+import { IParsedContactForm } from '@/interfaces';
 import React from 'react'
 
 const Page = async () => {
-    const contactFormsArray = await getContactForms();
+    const req = await fetch('http://localhost:3000/api/contact');
+    const contactFormsArray = await req.json();
+
 
     return (
         <div>
