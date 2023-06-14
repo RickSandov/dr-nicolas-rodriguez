@@ -6,8 +6,8 @@ import React from 'react'
 
 const Page = async () => {
     const req = await fetch('https://dr-nicolas-rodriguez.vercel.app/api/contact');
+    // const req = await fetch('http://localhost:3000/api/contact');
     const contactFormsArray = await req.json();
-
 
     return (
         <div>
