@@ -21,26 +21,31 @@ export async function saveContactForm(data: ISimpleContactForm) {
 const compareDate = (a: IContactForm, b: IContactForm) => {
   return b.receivedAt.getTime() - a.receivedAt.getTime();
 };
-
+let counter = 1;
 export async function getContactForms(page: number = 1) {
+  console.log("again", counter++);
   await connect();
   const forms = await ContactForm.find();
   await disconnect();
   const sortedItems = forms.sort(compareDate);
-  return sortedItems.map(
-    ({ name, phoneNumber, message, status, receivedAt, _id }) => {
-      const zonedReceivedAt = utcToZonedTime(receivedAt, "Etc/GMT+6");
-      const formattedDate = format(zonedReceivedAt, "MMM/dd HH:mm", {
-        locale: es,
-      });
-      return {
-        _id,
-        name,
-        phoneNumber,
-        message,
-        status,
-        receivedAt: formattedDate,
-      };
-    }
+  return JSON.parse(
+    JSON.stringify(
+      sortedItems.map(
+        ({ name, phoneNumber, message, status, receivedAt, _id }) => {
+          const zonedReceivedAt = utcToZonedTime(receivedAt, "Etc/GMT+6");
+          const formattedDate = format(zonedReceivedAt, "MMM/dd HH:mm", {
+            locale: es,
+          });
+          return {
+            _id,
+            name,
+            phoneNumber,
+            message,
+            status,
+            receivedAt: formattedDate,
+          };
+        }
+      )
+    )
   );
 }
