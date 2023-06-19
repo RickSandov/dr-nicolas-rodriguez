@@ -11,9 +11,8 @@ import { utcToZonedTime } from "date-fns-tz";
 
 export async function saveContactForm(data: ISimpleContactForm) {
   await connect();
-  const newForm = new ContactForm(data);
-  // const newForm = new ContactForm({ ...data, receivedAt: Date.now() });
-  await newForm.save();
+  await ContactForm.create(data);
+  // const newForm = new ContactForm({ ...data, receivedAt: Date.now() })
   await disconnect();
   return "Enviado con éxito";
 }

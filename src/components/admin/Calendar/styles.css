@@ -2,6 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+.rbc-calendar {
+    @apply rounded-2xl;
+    @apply max-w-[95%];
+    @apply p-3;
+    @apply mx-auto;
+    @apply h-[700px];
+    @apply max-h-[90vh];
+    @apply bg-white;
+    @apply dark:bg-primary;
+}
+
+.rbc-month-view {
+    @apply dark:bg-secondary;
+    @apply rounded-2xl;
+    @apply p-2;
+}
+
+.rbc-day-bg.rbc-today {
+    @apply dark:bg-primary;
+}
+
+.rbc-day-bg.rbc-off-range-bg {
+    @apply dark:bg-secondary-light;
+}
+
+.rbc-date-cell.rbc-off-range .rbc-button-link {
+    @apply text-primary;
+}
+
 .rbc-toolbar {
     display: flex;
     flex-wrap: wrap;
@@ -14,15 +43,29 @@
     width: 100%;
 }
 
+ .rbc-btn-group button {
+    @apply dark:text-white;
+}
+.rbc-toolbar .rbc-btn-group button.rbc-active {
+    @apply dark:text-primary;
+}
+
+.rbc-date-cell {
+    padding: 0 !important;
+}
+
 .rbc-event {
     @apply bg-secondary;
 }
+.rbc-row-segment .rbc-event {
+    display: none;
+}
+
 
 .rbc-event.rbc-selected {
     @apply bg-primary;
 
 }
-
 
 .rbc-agenda-event-cell {
     @apply text-black;

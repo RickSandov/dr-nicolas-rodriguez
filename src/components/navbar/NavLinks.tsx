@@ -53,7 +53,7 @@ export const NavLinks = () => {
     )
 }
 
-function HamburgerMenu({ isOpen, toggleIsOpen }: { isOpen: boolean, toggleIsOpen: () => void }) {
+export function HamburgerMenu({ isOpen, toggleIsOpen }: { isOpen: boolean, toggleIsOpen: () => void }) {
     return (
         <button onClick={toggleIsOpen} className='flex flex-col mr-1 relative translate-y-1 md:hidden' >
             <div className={`w-6 h-6 relative cursor-pointer`} >

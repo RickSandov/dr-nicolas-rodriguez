@@ -2,7 +2,6 @@ import { Navbar } from '@/components';
 import '@/styles/globals.css';
 import { Lato } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
-import { headers } from 'next/headers'
 
 const lato = Lato({
   weight: ['300', '400', '700'],

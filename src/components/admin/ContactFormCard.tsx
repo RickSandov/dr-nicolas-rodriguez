@@ -1,9 +1,12 @@
+'use client'
+
 import { IParsedContactForm, contactFormStatusType } from "@/interfaces"
 import { PlusIcon } from "../icons"
 import { useMemo } from "react"
 import { cn } from "@/lib/utils"
 import { CallPopOver } from "./CallPopOver"
 import { format, parseISO } from "date-fns"
+import { useTheme } from "next-themes"
 
 interface Props extends IParsedContactForm {
     onClick: () => void
@@ -15,16 +18,16 @@ export const ContactFormCard = ({ name, phoneNumber, message, receivedAt, status
         const styles = {
             status: 'border-yellow-400 bg-yellow-100 text-yellow-800',
             icon: 'bg-slate-400 hover:bg-slate-600 hover:cursor-pointer',
-            accent: 'text-slate-500',
-            text: 'text-slate-400',
+            accent: 'text-slate-500 dark:text-slate-400',
+            text: 'text-slate-400 dark:text-slate-300',
             item: 'opacity-80'
         }
 
         if (status === contactFormStatusType.pending) {
             styles.status = 'border-primary bg-secondary-light text-primary';
-            styles.accent = "text-secondary";
+            styles.accent = "text-secondary dark:text-secondary-light";
             styles.icon = "bg-secondary hover:cursor-pointer hover:bg-primary";
-            styles.text = 'text-black';
+            styles.text = 'text-black dark:text-white';
             styles.item = 'opacity-100'
         }
 
@@ -42,7 +45,7 @@ export const ContactFormCard = ({ name, phoneNumber, message, receivedAt, status
     return (
         <li
             key={phoneNumber}
-            className={`rounded-md p-3 pt-4 shadow-light cursor-default relative transition-all hover:opacity-100 hover:shadow-dark ${statusClassName.item}`}
+            className={`rounded-lg p-3 pt-4 shadow-light cursor-default relative transition-all hover:opacity-100 hover:shadow-dark dark:bg-primary  ${statusClassName.item}`}
         >
             <span className={cn(`block w-fit ml-auto text-right p-1 px-3 rounded-full border-2 text-black font-bold ${statusClassName.status}`)}>
                 {status}

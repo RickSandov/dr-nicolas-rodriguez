@@ -14,14 +14,14 @@ export const ContactFormsList = ({ contactFormsArray }: { contactFormsArray: IPa
     // console.log(format(new Date(`2023-06-16T07:37`), 'HH:mm:ss'))
     return (
         <>
-            <ul className='list-none py-7 px-5 grid grid-cols-auto-fill grid-rows-22 gap-4 ' >
+            <ul className='list-none py-7 max-w-[95%] mx-auto grid grid-cols-auto-fill grid-rows-22 gap-4 ' >
                 {
                     contactFormsArray.map((item, i) => (
                         <ContactFormCard {...item} key={i} onClick={() => setActiveFormCard(item)} />
                     ))
                 }
             </ul>
-            <Modal isActive={!!activeFormCard} onClose={() => setActiveFormCard(null)} >
+            <Modal isActive={!!activeFormCard} onClose={() => setActiveFormCard(null)} title='Agendar cita' >
                 {!!activeFormCard && <CreateAppointmentFromContactForm info={activeFormCard} />}
             </Modal>
         </>

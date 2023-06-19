@@ -36,7 +36,6 @@ const CreateAppointmentFromContactForm = ({ info: {
 
     return (
         <div>
-            <h3 className="text-xl text-secondary text-center mb-4" >Agendar cita</h3>
             <p>Paciente: <strong>{name}</strong></p>
             <label htmlFor="date">Selecciona una fecha:</label>
             <input
