@@ -4,6 +4,7 @@ import React, { Suspense } from 'react'
 
 const Page = async () => {
     const contactFormsArray = await getContactForms();
+
     return (
         <>
             <Suspense>
@@ -12,5 +13,7 @@ const Page = async () => {
         </>
     )
 }
+
+export const revalidate = 60;
 
 export default Page

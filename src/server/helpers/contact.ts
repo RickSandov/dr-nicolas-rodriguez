@@ -22,7 +22,6 @@ const compareDate = (a: IContactForm, b: IContactForm) => {
 };
 let counter = 1;
 export async function getContactForms(page: number = 1) {
-  console.log("again", counter++);
   await connect();
   const forms = await ContactForm.find();
   await disconnect();

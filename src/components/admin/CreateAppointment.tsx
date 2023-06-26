@@ -1,8 +1,9 @@
 'use client'
 
 import React, { ChangeEvent, useState } from "react";
-import { format, addHours, startOfDay, endOfDay, setHours } from "date-fns";
+import { format, addHours, startOfDay, endOfDay, setHours, parseISO } from "date-fns";
 import { IParsedContactForm } from "@/interfaces";
+import { api } from "@/api";
 
 const CreateAppointmentFromContactForm = ({ info: {
     _id,
@@ -30,8 +31,11 @@ const CreateAppointmentFromContactForm = ({ info: {
     };
 
     // Función para manejar el cambio de fecha
-    const handleDateChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setSelectedDate(new Date(e.target.value));
+    const handleDateChange = async (e: ChangeEvent<HTMLInputElement>) => {
+        const date = e.target.value;
+        const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/appointment/?date=${date}`);
+        console.log({ data })
+        setSelectedDate(parseISO(e.target.value));
     };
 
     return (

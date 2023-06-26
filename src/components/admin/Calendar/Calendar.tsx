@@ -11,7 +11,6 @@ import './styles.css'
 import { useState } from 'react'
 import { isSameDay } from 'date-fns'
 import { Modal } from '@/components/modal/Modal'
-import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 const locales = {
     'es': es,
@@ -73,6 +72,7 @@ export const MyCalendar = ({ events }: {
                                             <>
 
                                                 <li
+                                                    key={event.id}
                                                     onClick={() => {
                                                         if (isSelected) {
                                                             return setselectedAppointment(null);

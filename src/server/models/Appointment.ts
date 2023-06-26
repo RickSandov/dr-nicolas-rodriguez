@@ -23,15 +23,20 @@ interface ISchema extends Omit<IAppointment, "patientId"> {
 //   info: string;
 
 const AppointmentSchema = new Schema<ISchema>({
+  patientName: {
+    type: String,
+    required: true,
+  },
   patientId: {
     type: SchemaTypes.ObjectId,
     ref: "Patient",
+    required: true,
   },
-  starts: {
+  start: {
     type: Date,
     required: true,
   },
-  ends: {
+  end: {
     type: Date,
     required: true,
   },

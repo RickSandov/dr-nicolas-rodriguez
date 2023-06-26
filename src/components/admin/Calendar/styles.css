@@ -67,14 +67,19 @@
 
 }
 
-.rbc-agenda-event-cell {
-    @apply text-black;
-}
 .rbc-agenda-time-cell {
     @apply text-white;
     @apply bg-secondary;
 }
 
-.rbc-agenda-date-cell {
+.rbc-agenda-date-cell, .rbc-agenda-event-cell {
     @apply text-black;
+    @apply dark:text-white;
 }
+.rbc-agenda-time-cell {
+    @apply text-white;
+}
+/* 
+.rbc-agenda-event-cell {
+
+} */

@@ -33,10 +33,27 @@ export const Modal = ({ children, isActive, withCross = true, onClose, className
         }
     }, [isActive])
 
+    useEffect(() => {
+        if (modalRef.current) {
+            modalRef.current.addEventListener('close', onClose);
+            modalRef.current.addEventListener('click', (e) => {
+                if (e.target === modalRef.current) {
+                    onClose()
+                }
+            })
+        }
+        return () => {
+            if (modalRef.current) {
+                modalRef.current.removeEventListener('close', onClose);
+            }
+        }
+    }, [])
+
+
     return (
         <dialog
             ref={modalRef}
-            className={cn(`top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl h-72 w-[500px] max-w-[95%] shadow-dark dark:bg-primary dark:text-white ${className}`)}
+            className={cn(`top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl h-72 w-[500px] max-w-[95%] shadow-dark dark:bg-primary dark:text-white backdrop:bg-[#00000080] open:animate-fade-in ${className}`)}
         >
             <div className='p-5 pt-9 h-full relative' >
                 {withCross && (

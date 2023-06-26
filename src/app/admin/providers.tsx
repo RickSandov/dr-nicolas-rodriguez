@@ -9,20 +9,21 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
 
     const [theme, setTheme] = useState('light');
 
-    useLayoutEffect(() => {
+    // useLayoutEffect(() => {
 
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            setTheme('dark');
-            console.log('es dark', window.matchMedia, window.matchMedia('(prefers-color-scheme: dark)'))
-        }
+    // if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    //     setTheme('dark');
+    //     console.log('es dark', window.matchMedia, window.matchMedia('(prefers-color-scheme: dark)'))
+    // }
 
-        const theme = localStorage.getItem('theme') as 'light' | 'dark';
-        if (theme) {
-            console.log('first')
-            setTheme(theme);
-        }
+    // const theme = localStorage.getItem('theme');
+    // console.log({ theme })
+    // if (theme) {
+    //     console.log({ theme })
+    //     setTheme(theme);
+    // }
 
-    }, []);
+    // }, []);
 
     return (
         <ThemeProvider attribute='class' themes={['light', 'dark']} defaultTheme={theme} >

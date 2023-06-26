@@ -2,11 +2,12 @@ import { Types } from "mongoose";
 
 export interface IAppointment {
   patientId: string;
-  starts: Date;
-  ends: Date;
-  attendance: boolean;
+  patientName: string;
+  start: Date;
+  end: Date;
+  attendance?: boolean;
   canceled?: boolean;
-  resume: string;
-  services: string[];
-  info: string;
+  resume?: string;
+  services?: string[];
+  info?: string;
 }
