@@ -9,6 +9,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css'
 import './styles.css'
 import { MyCalendar } from './Calendar';
 import { parseISO } from 'date-fns';
+import { api } from '@/api';
 
 
 export interface IEvent {
@@ -26,15 +27,22 @@ export const CalendarPage = ({ events }: {
     const [eventsList, setEventsList] = useState(events);
 
     useEffect(() => {
-        fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/appointment`)
-            .then(res => res.json()).then(data => {
-                // setEventsList(data);
-                setEventsList(data.map((event: any) => ({
-                    ...event,
-                    start: parseISO(event.start),
-                    end: parseISO(event.end)
-                })))
-            })
+        api.get('/appointment').then(({ data }) => {
+            setEventsList(data.map((event: any) => ({
+                ...event,
+                start: parseISO(event.start),
+                end: parseISO(event.end)
+            })))
+        })
+        // fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/appointment`)
+        //     .then(res => res.json()).then(data => {
+        //         // setEventsList(data);
+        //         setEventsList(data.map((event: any) => ({
+        //             ...event,
+        //             start: parseISO(event.start),
+        //             end: parseISO(event.end)
+        //         })))
+        //     })
     }, [])
 
     const [selectedAppointment, setselectedAppointment] = useState<null | {
