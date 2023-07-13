@@ -8,10 +8,11 @@ interface Props extends PropsWithChildren {
     type?: 'submit' | 'button';
     className?: string;
     onClick?: () => void;
-    href?: string
+    href?: string;
+    disabled?: boolean;
 }
 
-const Button = ({ type = 'submit', children, className, onClick, href }: Props) => {
+const Button = ({ type = 'submit', children, className, onClick, href, disabled = false }: Props) => {
 
     if (href) {
         return (
@@ -25,6 +26,8 @@ const Button = ({ type = 'submit', children, className, onClick, href }: Props) 
     }
     return (
         <button
+            aria-disabled={disabled}
+            disabled={disabled}
             type={type}
             onClick={onClick}
             className={cn(`px-5 py-2 rounded-lg bg-white text-primary transition-all relative hover:translate-y-1 hover:shadow-sm hover:text-secondary-light hover:bg-primary ${className}`)}

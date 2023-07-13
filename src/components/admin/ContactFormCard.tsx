@@ -18,7 +18,7 @@ export const ContactFormCard = ({ name, phoneNumber, message, receivedAt, status
         const styles = {
             status: 'border-yellow-400 bg-yellow-100 text-yellow-800',
             icon: 'bg-slate-400 hover:bg-slate-600 hover:cursor-pointer',
-            accent: 'text-slate-500 dark:text-slate-400',
+            accent: 'text-slate-500 dark:text-white',
             text: 'text-slate-400 dark:text-slate-300',
             item: 'opacity-80'
         }

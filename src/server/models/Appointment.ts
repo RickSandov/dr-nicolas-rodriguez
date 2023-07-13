@@ -31,6 +31,7 @@ const AppointmentSchema = new Schema<ISchema>({
     type: SchemaTypes.ObjectId,
     ref: "Patient",
     required: true,
+    index: true,
   },
   start: {
     type: Date,

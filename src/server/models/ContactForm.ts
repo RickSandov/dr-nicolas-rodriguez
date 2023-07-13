@@ -21,6 +21,7 @@ const ContactFormSchema = new Schema<ISchema>({
   },
   phoneNumber: {
     type: String,
+    index: true,
   },
   message: {
     type: String,

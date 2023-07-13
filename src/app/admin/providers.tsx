@@ -2,28 +2,25 @@
 
 import { Menu } from '@/components/admin';
 import { ToggleTheme } from '@/components/admin/ToggleTheme';
+import { useAppStore } from '@/stores/useAppStore';
 import { ThemeProvider, useTheme } from 'next-themes'
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
 
-    const [theme, setTheme] = useState('light');
+    const [theme] = useState('light');
+    const { user, getUser } = useAppStore();
+    const setRouter = useAppStore((state) => state.setRouter);
+    const router = useRouter();
 
-    // useLayoutEffect(() => {
+    useEffect(() => {
+        setRouter(router);
+    }, [router])
 
-    // if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    //     setTheme('dark');
-    //     console.log('es dark', window.matchMedia, window.matchMedia('(prefers-color-scheme: dark)'))
-    // }
-
-    // const theme = localStorage.getItem('theme');
-    // console.log({ theme })
-    // if (theme) {
-    //     console.log({ theme })
-    //     setTheme(theme);
-    // }
-
-    // }, []);
+    useLayoutEffect(() => {
+        if (!user) getUser()
+    }, [])
 
     return (
         <ThemeProvider attribute='class' themes={['light', 'dark']} defaultTheme={theme} >

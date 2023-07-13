@@ -1,6 +1,6 @@
 import {
+  ContactFormStatusType,
   IContactForm,
-  IParsedContactForm,
   ISimpleContactForm,
 } from "@/interfaces";
 import { connect, disconnect } from "./db";
@@ -21,9 +21,9 @@ const compareDate = (a: IContactForm, b: IContactForm) => {
   return b.receivedAt.getTime() - a.receivedAt.getTime();
 };
 let counter = 1;
-export async function getContactForms(page: number = 1) {
+export async function getContactForms(status: ContactFormStatusType) {
   await connect();
-  const forms = await ContactForm.find();
+  const forms = await ContactForm.find({ status });
   await disconnect();
   const sortedItems = forms.sort(compareDate);
   return JSON.parse(
@@ -46,4 +46,13 @@ export async function getContactForms(page: number = 1) {
       )
     )
   );
+}
+
+export async function updateContactFormStatus(
+  phoneNumber: string,
+  status: ContactFormStatusType
+) {
+  await connect();
+  await ContactForm.updateOne({ phoneNumber }, { status });
+  await disconnect();
 }

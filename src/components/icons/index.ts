@@ -16,3 +16,4 @@ export { DoctorIcon } from "./DoctorIcon";
 export { DoctorIconWhite } from "./DoctorIconWhite";
 export { LogoWhite } from "./LogoWhite";
 export { LogoTextWhite } from "./LogoTextWhite";
+export { MagnifyIcon } from "./MagnifyIcon";

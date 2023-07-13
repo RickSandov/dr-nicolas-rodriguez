@@ -9,7 +9,7 @@ export const contactFormStatusType = {
 
 export const contactFormStatusTypeArray = Object.values(contactFormStatusType);
 
-export type ContactFormSStatusType = ObjectValues<typeof contactFormStatusType>;
+export type ContactFormStatusType = ObjectValues<typeof contactFormStatusType>;
 
 export interface IContactForm {
   // patientId: string;
@@ -18,7 +18,7 @@ export interface IContactForm {
   phoneNumber: string;
   message: string;
   receivedAt: Date;
-  status: ContactFormSStatusType;
+  status: ContactFormStatusType;
 }
 
 export interface IParsedContactForm extends Omit<IContactForm, "receivedAt"> {

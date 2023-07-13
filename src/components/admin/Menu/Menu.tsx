@@ -5,24 +5,15 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { ChevronDownIcon } from '@radix-ui/react-icons'
 import { ArrowDown } from '@/components/icons';
+import { useAppStore } from '@/stores/useAppStore';
+import { links } from './data';
 
-
-const links = [
-    {
-        text: 'mensajes',
-        to: '/admin/mensajes'
-    },
-    {
-        text: 'agenda',
-        to: '/admin'
-    }
-]
 export const Menu = () => {
 
     const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
+    const { user } = useAppStore()
 
     const [colors, setColors] = useState({
         button: 'bg-secondary text-white hover:bg-primary dark:marker:bg-secondary dark:text-primary',
@@ -46,6 +37,7 @@ export const Menu = () => {
     }, [isOpen, pathname])
 
 
+
     return (
         <Popover.Root open={isOpen} onOpenChange={() => setIsOpen(!isOpen)} >
             <Popover.Trigger asChild>
@@ -60,16 +52,19 @@ export const Menu = () => {
                     <div className='px-4 text-right flex flex-col gap-2 items-end relative' >
 
                         {
-                            links.map(({ text, to }) => {
-                                return (
-                                    <Link
-                                        key={text}
-                                        href={to}
-                                        className={cn(`bg-white py-2 px-3 rounded-full shadow-light hover:bg-secondary-light ${to === pathname ? colors.link : ''}`)}
-                                    >
-                                        {text}
-                                    </Link>
-                                )
+                            links.map(({ text, to, roles }) => {
+                                if (roles.includes(user?.role || 'empleado')) {
+                                    return (
+                                        <Link
+                                            key={text}
+                                            href={to}
+                                            className={cn(`bg-white py-2 px-3 rounded-full shadow-light hover:bg-secondary-light ${to === pathname ? colors.link : ''}`)}
+                                        >
+                                            {text}
+                                        </Link>
+                                    )
+                                }
+                                return null
                             })
                         }
                     </div>

@@ -1,16 +1,13 @@
 'use client'
-
-import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
-import format from 'date-fns/format'
-import parse from 'date-fns/parse'
-import startOfWeek from 'date-fns/startOfWeek'
-import getDay from 'date-fns/getDay'
+import { isSameDay } from 'date-fns';
+import React from 'react'
+import format from 'date-fns/format';
+import parse from 'date-fns/parse';
 import { es } from 'date-fns/locale';
-import 'react-big-calendar/lib/css/react-big-calendar.css'
-import './styles.css'
-import { useState } from 'react'
-import { isSameDay } from 'date-fns'
-import { Modal } from '@/components/modal/Modal'
+import startOfWeek from 'date-fns/startOfWeek';
+import getDay from 'date-fns/getDay';
+import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
+import { IEvent } from './CalendarPage';
 
 const locales = {
     'es': es,
@@ -25,90 +22,11 @@ const localizer = dateFnsLocalizer({
     locales,
 })
 
-interface IEvent {
-    id: string;
-    title: string;
-    start: Date;
-    end: Date;
-    info: string;
-}
-
-export const MyCalendar = ({ events }: {
-    events: IEvent[]
-}) => {
-
-    const [selectedAppointment, setselectedAppointment] = useState<null | {
-        id: string;
-        title: string;
-        start: Date;
-        end: Date;
-    }>(null)
-
-    const [selectedEvents, setSelectedEvents] = useState<{
-        date: Date;
-        events: IEvent[]
-    } | null>(null);
-
+export const MyCalendar = ({ events, setSelectedEvents }: { events: IEvent[], setSelectedEvents: ({ date, events }: { date: Date, events: IEvent[] }) => void }) => {
     return (
-        <div className='relative pt-4' >
-            <Modal
-                className='overflow-y-hidden'
-                isActive={!!selectedEvents}
-                onClose={() => {
-                    setSelectedEvents(null)
-                }}
-                title={selectedEvents ? format(selectedEvents?.date, 'EEEE dd-MMM', {
-                    locale: es
-                }) : ''}
-            >
-                {
-                    selectedEvents && (
-                        <>
-                            <ul className='flex flex-col gap-2 pb-4'>
-                                {
-                                    selectedEvents.events.map((event) => {
-                                        const isSelected = selectedAppointment?.id === event.id
-                                        return (
-                                            <>
-
-                                                <li
-                                                    key={event.id}
-                                                    onClick={() => {
-                                                        if (isSelected) {
-                                                            return setselectedAppointment(null);
-                                                        }
-                                                        setselectedAppointment(event)
-                                                    }}
-                                                    className='flex border-b-[1px] border-black py-2 cursor-pointer'
-                                                >
-                                                    <span className='text-primary dark:text-primary-light mr-2' >{format(event.start, 'HH:mm')}</span>
-                                                    <div>
-                                                        <p className='inline' >{event.title}</p>
-                                                        {
-                                                            isSelected && (
-                                                                <>
-                                                                    <p className='text-secondary dark:text-secondary-light' >
-                                                                        {
-                                                                            event.info.length ? event.info : 'no hay anotaciones'
-                                                                        }
-                                                                    </p>
-                                                                </>
-                                                            )
-                                                        }
-                                                    </div>
-                                                </li>
-
-                                            </>
-                                        )
-                                    })
-                                }
-                            </ul>
-                        </>
-
-                    )
-                }
-            </Modal>
+        <>
             <Calendar
+                localizer={localizer}
                 culture='es'
                 messages={{
                     week: 'Semana',
@@ -124,7 +42,10 @@ export const MyCalendar = ({ events }: {
                     event: 'Consulta',
                     noEventsInRange: 'No hay consultas asignadas'
                 }}
-                localizer={localizer}
+                views={{
+                    month: true,
+                    agenda: true
+                }}
                 events={events}
                 startAccessor="start"
                 endAccessor="end"
@@ -155,8 +76,7 @@ export const MyCalendar = ({ events }: {
                         }
                     }
                 }}
-
             />
-        </div>
+        </>
     )
 }

@@ -1,7 +1,6 @@
-import { ObjectValues } from ".";
+import { IAppointment, ObjectValues } from ".";
 
 export const statusType = {
-  pending: "pendiente",
   appointment: "con cita",
   patient: "paciente",
 } as const;
@@ -15,5 +14,12 @@ export interface IPatient {
   name: string;
   phoneNumber: string;
   status: StatusType;
-  //   appointments: [];
+}
+
+export interface IPatientWAppointments extends IPatient {
+  appointments: IAppointment[];
+}
+
+export interface PartialPatient extends Omit<IPatient, "_id" | "status"> {
+  status?: StatusType;
 }

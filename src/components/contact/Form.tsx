@@ -35,12 +35,15 @@ export const Form = () => {
             success: ({ data }) => {
                 console.log({ data });
                 setIsLoading(false);
+                helpers.resetForm();
                 return data;
             },
             error: () => {
                 setIsLoading(false);
                 return 'ocurrió un error, inténtalo de nuevo más tarde'
             }
+        }, {
+            duration: 10000
         })
 
     }
@@ -80,7 +83,7 @@ export const Form = () => {
                             />
                         </div>
                         <p className='text-center text-sm'>Tu bienestar es nuestra prioridad y estamos aquí para brindarte la mejor atención médica. ¡Esperamos poder atenderte pronto!</p>
-                        <Button className='mt-5 md:mt-10 w-full md:w-fit self-end ' >
+                        <Button disabled={isLoading} className='mt-5 md:mt-10 w-full md:w-fit self-end ' >
                             Enviar formulario
                         </Button>
                     </form>

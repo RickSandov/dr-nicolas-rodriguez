@@ -2,36 +2,91 @@
 
 import { ContactFormCard } from '@/components/admin'
 import CreateAppointmentFromContactForm from '@/components/admin/CreateAppointment'
+import Button from '@/components/button/Button'
+import { MagnifyIcon } from '@/components/icons'
 import { Modal } from '@/components/modal/Modal'
-import { IParsedContactForm } from '@/interfaces'
+import { ContactFormStatusType, IParsedContactForm, contactFormStatusType, contactFormStatusTypeArray } from '@/interfaces'
 import React, { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
 
 export const ContactFormsList = ({ contactFormsArray }: { contactFormsArray: IParsedContactForm[] }) => {
 
     const [activeFormCard, setActiveFormCard] = useState<null | IParsedContactForm>(null);
-
+    const [allForms, setAllForms] = useState(contactFormsArray);
     const [forms, setForms] = useState(contactFormsArray);
+    const [statusQuery, setStatusQuery] = useState<ContactFormStatusType>(contactFormStatusType.pending);
+    const [isLoading, setIsLoading] = useState(false);
+    const { register } = useForm();
 
     useEffect(() => {
-        fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/contact`)
+        setIsLoading(true);
+        fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/contact?status=${statusQuery}`)
             .then(res => res.json()).then(data => {
-                setForms(data)
+                setAllForms(data);
+                setForms(data);
+                setIsLoading(false);
             })
-    }, [])
+    }, [statusQuery]);
 
-    // console.log(isSameDay(new Date(`2023-06-16T07:36`), new Date(`2023-06-16T07:37`)))
-    // console.log(format(new Date(`2023-06-16T07:37`), 'HH:mm:ss'))
+    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.value === '') {
+            return setForms(allForms);
+        }
+        setForms(allForms.filter(form => form.name.toLowerCase().includes(e.target.value.toLowerCase())));
+    }
+
     return (
         <>
-            <ul className='list-none py-7 max-w-[95%] mx-auto grid grid-cols-auto-fill grid-rows-22 gap-4 ' >
-                {
-                    forms.map((item, i) => (
-                        <ContactFormCard {...item} key={i} onClick={() => setActiveFormCard(item)} />
-                    ))
-                }
-            </ul>
-            <Modal isActive={!!activeFormCard} onClose={() => setActiveFormCard(null)} title='Agendar cita' >
-                {!!activeFormCard && <CreateAppointmentFromContactForm info={activeFormCard} />}
+            <Button
+                className='block ml-auto mt-2 mr-2 bg-primary text-white'
+                onClick={() => setActiveFormCard({
+                    _id: '',
+                    message: '',
+                    name: '',
+                    phoneNumber: '',
+                    receivedAt: '',
+                    status: contactFormStatusType.success,
+                })} >
+                Nueva consulta
+            </Button>
+            <div className={`w-full flex flex-wrap my-7 gap-3 justify-center`}>
+                {contactFormStatusTypeArray.map(status => (
+                    <Button key={status}
+                        className={`rounded-full border-2 border-primary dark:bg-white hover:translate-y-0 hover:text-white dark:hover:bg-secondary-light dark:hover:text-primary ${status === statusQuery ? 'bg-secondary dark:bg-secondary text-white border-secondary' : ''}`}
+                        onClick={() => setStatusQuery(status)}
+                    >
+                        {status}
+                    </Button>
+                ))}
+            </div>
+            <div className='w-full flex justify-end items-center px-2' >
+                <input
+                    className='rounded-full border-2 border-primary text-black py-1 px-3 dark:bg-white'
+                    placeholder='Buscar'
+                    onChange={handleSearch} />
+                <div className='w-8 p-1 absolute right-3' >
+                    <MagnifyIcon />
+                </div>
+            </div>
+
+            {
+                isLoading ? (
+                    <div className='mt-16 text-center'> Buscando...</div>
+                ) : forms.length ? (
+                    <ul className='list-none py-7 max-w-[95%] mx-auto grid grid-cols-auto-fill grid-rows-22 gap-4 ' >
+                        {
+                            forms.map((item, i) => (
+                                <ContactFormCard {...item} key={i} onClick={() => setActiveFormCard(item)} />
+                            ))
+                        }
+                    </ul>
+                ) : <div className='mt-16 text-center'> No hay información</div>
+            }
+            <Modal isActive={!!activeFormCard} onClose={() => setActiveFormCard(null)} title='Agendar consulta' className='h-[70vh]' >
+                {!!activeFormCard && <CreateAppointmentFromContactForm onClose={() => {
+                    setStatusQuery(contactFormStatusType.success)
+                    setActiveFormCard(null)
+                }} info={activeFormCard} />}
             </Modal>
         </>
     )

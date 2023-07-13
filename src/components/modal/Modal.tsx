@@ -53,7 +53,7 @@ export const Modal = ({ children, isActive, withCross = true, onClose, className
     return (
         <dialog
             ref={modalRef}
-            className={cn(`top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl h-72 w-[500px] max-w-[95%] shadow-dark dark:bg-primary dark:text-white backdrop:bg-[#00000080] open:animate-fade-in ${className}`)}
+            className={cn(`top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl min-h-[300px] w-[500px] max-w-[95%] shadow-dark dark:bg-primary dark:text-white backdrop:bg-[#00000080] open:animate-fade-in ${className}`)}
         >
             <div className='p-5 pt-9 h-full relative' >
                 {withCross && (
@@ -69,7 +69,7 @@ export const Modal = ({ children, isActive, withCross = true, onClose, className
                         <>
                             <h3 className='capitalize text-secondary dark:text-secondary-light text-center text-xl'>{title}</h3>
                             <div className='w-1/2 mx-auto h-1 bg-secondary dark:bg-secondary-light mb-5' />
-                            <div className='overflow-y-scroll max-h-[200px]' >
+                            <div className='' >
                                 {children}
                             </div>
                         </>

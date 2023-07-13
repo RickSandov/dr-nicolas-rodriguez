@@ -47,6 +47,7 @@ module.exports = {
     },
     gridAutoRows: {
       '22': '22rem',
+      '15': '10rem',
     },
   },
   plugins: [],

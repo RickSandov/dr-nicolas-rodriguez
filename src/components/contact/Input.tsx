@@ -2,6 +2,7 @@ import { useId, useMemo } from "react";
 import { ErrorMessage, Field, useField } from "formik";
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 
+
 interface InputProps {
     className?: string,
     name: string,
@@ -9,11 +10,15 @@ interface InputProps {
     placeholder?: string,
     nameDisplayed: string,
     // handleChange?: ((e: React.ChangeEvent<HTMLInputElement>) => void) | null,
-    size?: 'small' | 'medium' | 'large'
+    size?: 'small' | 'medium' | 'large',
+    options?: {
+        label: string,
+        value: string
+    }[]
 }
 
 
-export const Input = ({ className = "", name, type = 'text', placeholder, nameDisplayed, size }: InputProps) => {
+export const Input = ({ className = "", name, type = 'text', placeholder, nameDisplayed, size, options }: InputProps) => {
     const id = useId();
     const data = useField(name);
     const isActive = data[1].value !== '';
@@ -31,6 +36,25 @@ export const Input = ({ className = "", name, type = 'text', placeholder, nameDi
                         placeholder={placeholder}
                         className={`w-[100%] px-3 py-2 rounded-md text-black bg-white h-36 resize-none`}
                     />
+                )
+
+            case 'select':
+                return (
+                    <Field
+                        id={id}
+                        name={name}
+                        as={type}
+                        placeholder={placeholder}
+                        className={`w-[100%] px-3 py-2 rounded-md text-black bg-white`}
+                    >
+                        {options?.map(({ label, value }) => (
+                            <option key={value} value={value}
+                                className="w-[100%] px-3 py-2 rounded-md text-black bg-white"
+                            >
+                                {label}
+                            </option>
+                        ))}
+                    </Field>
                 )
 
             default:

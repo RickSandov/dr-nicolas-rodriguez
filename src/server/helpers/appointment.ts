@@ -1,15 +1,31 @@
-import { addDays, startOfDay } from "date-fns";
+import { addDays, startOfDay, sub } from "date-fns";
 import { Appointment } from "../models";
 import { connect, disconnect } from "./db";
+import { Types } from "mongoose";
 
-export async function setAppointment(
-  patientId: string,
-  startTime: Date,
-  duration: number
-) {
+export async function setAppointment({
+  patientId,
+  start,
+  end,
+  patientName,
+  info,
+}: {
+  patientId: string;
+  start: Date;
+  end: Date;
+  patientName: string;
+  info?: string;
+}) {
   try {
     await connect();
-    const appointment = await Appointment.create({});
+    const appointment = await Appointment.create({
+      patientId,
+      start,
+      end,
+      patientName,
+      info,
+    });
+    return appointment;
   } catch (error) {
     await disconnect();
   }
@@ -41,14 +57,20 @@ export async function getDayAppointments(date: Date) {
 export async function getAppointmentsAsEvent() {
   try {
     await connect();
-    const appointments = await Appointment.find();
+    const appointments = await Appointment.find({
+      $or: [
+        {
+          start: { $gte: sub(new Date(), { days: 2 }) },
+        },
+      ],
+    }).exec();
     await disconnect();
     return appointments.map(({ start, end, info, patientName, _id }) => {
       return {
         id: _id.toString(),
         start,
         end,
-        info,
+        info: info || "",
         title: patientName,
       };
     });
@@ -56,5 +78,20 @@ export async function getAppointmentsAsEvent() {
     await disconnect();
     console.log("getAppointments: ", { error });
     return [];
+  }
+}
+
+export async function getPatientAppointment(id: string) {
+  try {
+    await connect();
+    const appointments = await Appointment.find({
+      patientId: new Types.ObjectId(id),
+    });
+    await disconnect();
+    return appointments;
+  } catch (error) {
+    console.log("getPatientAppointment: ", { error });
+    await disconnect();
+    return null;
   }
 }

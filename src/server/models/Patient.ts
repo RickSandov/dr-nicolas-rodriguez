@@ -15,7 +15,7 @@ const PatientSchema = new Schema<IPatient>({
   status: {
     type: String,
     enum: statusTypeArray,
-    default: statusType.pending,
+    default: statusType.appointment,
   },
 });
 

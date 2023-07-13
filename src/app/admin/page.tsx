@@ -1,18 +1,20 @@
-import { MyCalendar } from '@/components/admin/Calendar/Calendar';
-import { getAppointmentsAsEvent } from '@/server/helpers/appointment';
+import { ContactFormsList } from '@/components/pages/admin'
+import { contactFormStatusType } from '@/interfaces';
+import { getContactForms } from '@/server/helpers';
 import React, { Suspense } from 'react'
 
 const Page = async () => {
-    const events = await getAppointmentsAsEvent();
-    console.log({ events });
+    const contactFormsArray = await getContactForms(contactFormStatusType.pending);
+
     return (
         <>
-            {/* Crear componente */}
             <Suspense>
-                <MyCalendar events={events} />
+                <ContactFormsList contactFormsArray={contactFormsArray} />
             </Suspense>
         </>
     )
 }
 
-export default Page;
+export const revalidate = 60;
+
+export default Page
