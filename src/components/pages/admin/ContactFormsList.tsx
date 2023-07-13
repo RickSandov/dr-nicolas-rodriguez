@@ -1,5 +1,6 @@
 'use client'
 
+import { api } from '@/api'
 import { ContactFormCard } from '@/components/admin'
 import CreateAppointmentFromContactForm from '@/components/admin/CreateAppointment'
 import Button from '@/components/button/Button'
@@ -20,12 +21,11 @@ export const ContactFormsList = ({ contactFormsArray }: { contactFormsArray: IPa
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/contact?status=${statusQuery}`)
-            .then(res => res.json()).then(data => {
-                setAllForms(data);
-                setForms(data);
-                setIsLoading(false);
-            })
+        api.get('/contact?status=' + statusQuery).then(({ data }) => {
+            setAllForms(data);
+            setForms(data);
+            setIsLoading(false);
+        });
     }, [statusQuery]);
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -7,7 +7,6 @@ import { links } from "@/components/admin/Menu/data";
 
 const secret = process.env.SECRET || "";
 
-// This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
   console.log("middleware running");
   const isAdminApi = request.url.includes("/api/admin");
