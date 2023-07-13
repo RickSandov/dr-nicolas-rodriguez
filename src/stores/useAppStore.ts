@@ -1,4 +1,4 @@
-import { api } from "@/api";
+import { api, apiLogin } from "@/api";
 import { IShortUser } from "@/interfaces/user";
 import { toast } from "react-hot-toast";
 import { create } from "zustand";
@@ -63,7 +63,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
   setRouter: (router) => set({ router }),
   login: async (userName: string, password: string) => {
-    const req = api.post<IShortUser>("/login", { userName, password });
+    const req = apiLogin.post<IShortUser>("/login", { userName, password });
     toast.promise(req, {
       loading: "iniciando sesión",
       success: ({ data }) => {

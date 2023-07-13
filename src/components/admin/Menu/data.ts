@@ -14,7 +14,7 @@ export const links: { text: string; to: string; roles: UserType[] }[] = [
   {
     text: "pacientes",
     to: "/admin/pacientes",
-    // roles: [userType.admin, userType.employee],
-    roles: [userType.admin],
+    roles: [userType.admin, userType.employee],
+    // roles: [userType.admin],
   },
 ];

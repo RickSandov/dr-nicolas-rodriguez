@@ -1,6 +1,6 @@
 import { IUser, UserType } from "@/interfaces/user";
 import { verifyServerToken } from "@/server/helpers";
-import { createUser, getUser } from "@/server/helpers/user";
+import { createToken, createUser, getUser } from "@/server/helpers/user";
 import { jwtVerify } from "jose";
 import { cookies } from "next/headers";
 
@@ -26,6 +26,7 @@ export async function GET(req: Request) {
     }
     const user = await getUser(token.userId);
     if (user) {
+      const newtoken = createToken(user._id, user.role);
       return new Response(
         JSON.stringify({
           userName: user.userName,
@@ -34,9 +35,28 @@ export async function GET(req: Request) {
         }),
         {
           status: 200,
+          headers: {
+            "Set-Cookie": `auth=${newtoken}; Max-Age=${
+              60 * 60 * 24 * 30
+            }; Path=/`,
+          },
         }
       );
     }
+    // const token = createToken(user._id, user.role);
+    // return new Response(
+    //   JSON.stringify({
+    //     userName: user.userName,
+    //     displayName: user.displayName,
+    //     role: user.role,
+    //   }),
+    //   {
+    //     status: 200,
+    //     headers: {
+    //       "Set-Cookie": `auth=${token}; Max-Age=${60 * 60 * 24 * 30}; Path=/`,
+    //     },
+    //   }
+    // );
   }
   return new Response("usuario creado con exito", {
     status: 200,

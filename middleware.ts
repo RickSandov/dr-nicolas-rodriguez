@@ -9,6 +9,10 @@ const secret = process.env.SECRET || "";
 
 export async function middleware(request: NextRequest) {
   console.log("middleware running");
+  const response = NextResponse.next();
+
+  response.headers.set("x-modified-edge", "middleware is working");
+
   const isAdminApi = request.url.includes("/api/admin");
   const isLogin = request.url.includes("/login");
   // const auth = request.cookies.get("auth");
@@ -30,8 +34,6 @@ export async function middleware(request: NextRequest) {
       request.cookies.delete("auth");
       return NextResponse.redirect(new URL("/login", request.url));
     }
-    if (request.nextUrl.pathname === "/admin/agenda")
-      return NextResponse.next();
   } catch (error) {
     return NextResponse.redirect(new URL("/login", request.url));
   }

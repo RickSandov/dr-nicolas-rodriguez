@@ -29,7 +29,7 @@ export const PatientsList = ({ patients: propsPatients }: { patients: IPatient[]
             <ul className='grid grid-cols-auto-fill grid-rows-22 gap-4 ' >
                 {patients.map(({ _id, name, phoneNumber }) => (
                     <Link href={`/admin/pacientes/${_id}`} className='dark:bg-secondary px-5 shadow-light rounded-lg h-24 flex flex-col  justify-center transition-all hover:shadow-dark hover:scale-[1.01] ' key={_id}>
-                        <h2 className='font-bold text-md' >{name}</h2>
+                        <h2 className='text-black dark:text-white font-bold text-md' >{name}</h2>
                         <p className='text-xl'>{
                             phoneNumber.slice(0, 3)
                             + ' '
