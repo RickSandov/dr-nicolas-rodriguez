@@ -9,6 +9,7 @@ const secret = process.env.SECRET || "";
 
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
+  console.log("middleware running");
   const isAdminApi = request.url.includes("/api/admin");
   const isLogin = request.url.includes("/login");
   // const auth = request.cookies.get("auth");
