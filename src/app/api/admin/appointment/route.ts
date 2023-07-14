@@ -2,22 +2,24 @@ import { contactFormStatusType, statusType } from "@/interfaces";
 import { updateContactFormStatus } from "@/server/helpers";
 import {
   getAppointmentsAsEvent,
+  getDayAppointments,
   setAppointment,
 } from "@/server/helpers/appointment";
 import { getOrCreateClient } from "@/server/helpers/patients";
-import { parse, addMinutes } from "date-fns";
+import { parse, addMinutes, parseISO } from "date-fns";
 
 // GET available hours
 export async function GET(req: Request) {
-  // const appointments: IAppointment[] = [];
-  // const { searchParams } = new URL(req.url);
-  // const paramsDate = searchParams.get("date");
+  const { searchParams } = new URL(req.url);
+  const paramsDate = searchParams.get("date");
 
-  // if (paramsDate) {
-  //   const date = parseISO(paramsDate);
-  //   const appointments = await getDayAppointments(date);
-  //   console.log({ appointments });
-  // }
+  if (paramsDate) {
+    const date = parseISO(paramsDate);
+    const appointments = await getDayAppointments(date);
+    return new Response(JSON.stringify(appointments), {
+      status: 200,
+    });
+  }
   const appointments = await getAppointmentsAsEvent();
   return new Response(JSON.stringify(appointments), {
     status: 200,

@@ -96,10 +96,12 @@ export async function getPatientWithAppointments(patientId: string) {
   try {
     await connect();
     const patient = await Patient.findById(patientId);
+    console.log({ patient });
     const appointments = await getPatientAppointment(patient!._id);
     await disconnect();
     return { patient, appointments };
   } catch (error) {
+    console.log("getPatientWithAppointments", { error });
     await disconnect();
     return { patient: null, appointments: [] };
   }

@@ -35,6 +35,8 @@ interface AppState {
     onClose: () => void
   ) => Promise<void>;
   logout: () => void;
+  cancelAppointment: (id: string, resume: string) => Promise<void>;
+  registerAttendance: (id: string, resume: string) => Promise<void>;
 }
 
 export const useAppStore = create<AppState>((set, get) => ({
@@ -134,5 +136,33 @@ export const useAppStore = create<AppState>((set, get) => ({
     set({ user: null });
     deleteCookie("auth");
     get().router?.push("/login");
+  },
+  cancelAppointment: async (id: string, resume: string) => {
+    const req = api.post(`/appointment/cancel`, {
+      resume,
+      id,
+    });
+    toast.promise(req, {
+      loading: "cancelando consulta",
+      success: () => {
+        get().router?.push("/admin/pacientes");
+        return "Consulta cancelada con éxito";
+      },
+      error: "Ocurrió un error, revise su conexión a internet",
+    });
+  },
+  registerAttendance: async (id: string, resume: string) => {
+    const req = api.post(`/appointment/register`, {
+      id,
+      resume,
+    });
+    toast.promise(req, {
+      loading: "registrando consulta",
+      success: () => {
+        get().router?.push("/admin/pacientes");
+        return "Consulta registrada con éxito";
+      },
+      error: "Ocurrió un error, revise su conexión a internet",
+    });
   },
 }));

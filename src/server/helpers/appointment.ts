@@ -38,11 +38,11 @@ export async function getDayAppointments(date: Date) {
     const dayEnd = addDays(dayStart, 1);
 
     const appointments = await Appointment.find({
-      // $or: [
-      //   {
-      //     starts: { $gte: dayStart, $lt: dayEnd },
-      //   },
-      // ],
+      $or: [
+        {
+          starts: { $gte: dayStart, $lt: dayEnd },
+        },
+      ],
     });
 
     await disconnect();
@@ -59,21 +59,31 @@ export async function getAppointmentsAsEvent() {
     await connect();
     const appointments = await Appointment.find({
       $or: [
+        // {
+        //   canceled: { $ne: true },
+        // },
+        // {
+        //   attendance: { $ne: true },
+        // },
         {
-          start: { $gte: sub(new Date(), { days: 2 }) },
+          start: { $gte: sub(new Date(), { days: 1 }) },
         },
       ],
     }).exec();
     await disconnect();
-    return appointments.map(({ start, end, info, patientName, _id }) => {
-      return {
-        id: _id.toString(),
-        start,
-        end,
-        info: info || "",
-        title: patientName,
-      };
-    });
+    return appointments.map(
+      ({ start, end, info, patientName, _id, canceled, attendance }) => {
+        return {
+          id: _id.toString(),
+          start,
+          end,
+          info: info || "",
+          title: patientName,
+          canceled,
+          attendance,
+        };
+      }
+    );
   } catch (error) {
     await disconnect();
     console.log("getAppointments: ", { error });
@@ -91,6 +101,36 @@ export async function getPatientAppointment(id: string) {
     return appointments;
   } catch (error) {
     console.log("getPatientAppointment: ", { error });
+    await disconnect();
+    return null;
+  }
+}
+
+export async function cancelAppointment(id: string, resume = "") {
+  try {
+    await connect();
+    const appointment = await Appointment.findByIdAndUpdate(id, {
+      $set: { canceled: true, resume },
+    });
+    await disconnect();
+    return appointment;
+  } catch (error) {
+    console.log("cancelAppointment: ", { error });
+    await disconnect();
+    return null;
+  }
+}
+
+export async function registerAttendance(id: string, resume = "") {
+  try {
+    await connect();
+    const appointment = await Appointment.findByIdAndUpdate(id, {
+      $set: { attendance: true, resume },
+    });
+    await disconnect();
+    return appointment;
+  } catch (error) {
+    console.log("registerAttendance: ", { error });
     await disconnect();
     return null;
   }

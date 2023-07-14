@@ -28,6 +28,20 @@ const FullPatient = ({ patient }: { patient: IPatientWAppointments }) => {
                         {appointments.map((appointment, i) => (
                             <li className='border-secondary-light border-2 p-2 rounded-lg' key={i} >
                                 <p className='text-right'>{format(new Date(appointment.start), 'dd, MMMM yyyy', { locale: es })}</p>
+
+                                <p className='text-sm mb-3'>
+                                    {
+                                        appointment.attendance ? (
+                                            'Asistencia registrada.'
+                                        ) : appointment.canceled ?
+                                            'Cancelada.' : ''
+                                    }
+                                </p>
+
+                                {appointment.canceled && (
+                                    <p className='mb-3'><strong>Cancelada</strong></p>
+                                )}
+
                                 <p>Horario: <strong>{format(new Date(appointment.start), 'HH:mm', { locale: es })} - {format(new Date(appointment.end), 'HH:mm', { locale: es })}</strong></p>
                                 <p>Anotaciones: <strong>{appointment.info ? appointment.info : 'sin anotaciones'}</strong></p>
                                 <p>Resumen: <strong>{appointment.resume ? appointment.resume : 'sin resumen'}</strong></p>

@@ -13,7 +13,7 @@ const CreateAppointmentFromContactForm = ({ info: {
 }, onClose }: { info: IParsedContactForm, onClose: () => void }) => {
 
     const [isLoading, postAppointment] = useAppStore(state => [state.isLoading, state.postAppointment]);
-    const [selectedDate, setSelectedDate] = useState(new Date());
+    // const [selectedDate, setSelectedDate] = useState(new Date());
 
     // Función para obtener las horas disponibles
     // const getAvailableHours = () => {
@@ -33,13 +33,13 @@ const CreateAppointmentFromContactForm = ({ info: {
     //     return hours;
     // };
 
-    const handleDateChange = async (e: ChangeEvent<HTMLInputElement>) => {
-        const date = e.target.value;
-        const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/days/?date=${date}`);
-        // const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/appointment/?date=${date}`);
-        console.log('data: ', await data.json());
-        setSelectedDate(parseISO(e.target.value));
-    };
+    // const handleDateChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    //     const date = e.target.value;
+    //     const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/days/?date=${date}`);
+    //     // const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/appointment/?date=${date}`);
+    //     console.log('data: ', await data.json());
+    //     setSelectedDate(parseISO(e.target.value));
+    // };
 
     const { register, setValue, handleSubmit, formState: { errors } } = useForm();
 
