@@ -1,6 +1,5 @@
 import { Navbar } from '@/components'
 import { HomePage } from '@/components/pages/HomePage'
-import Image from 'next/image'
 import { Metadata } from 'next'
 
 const description = 'Atención médica especializada en salud femenina, con enfoque preventivo y soluciones personalizadas para cada etapa de tu vida.';
