@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     description,
     type: `website`,
-    title: `Dr. Nicolás Rodríguez Luna. Ginecología y Obstetricia. Clínica de Displasias. Colposcopía.`,
+    title: `Dr. Nicolás Rodríguez Luna. Ginecología y Obstetricia. Colposcopía. Clínica de Displasias.`,
     countryName: 'México',
     locale: `es-MX`,
     url: `https://www.drnicolasrodriguez.com/`,
