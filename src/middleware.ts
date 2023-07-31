@@ -3,21 +3,20 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { jwtVerify } from "jose";
 import { UserType } from "@/interfaces/user";
-import { links } from "@/components/admin/Menu/data";
+// import { links } from "@/components/admin/Menu/data";
 
 const secret = process.env.SECRET || "";
 
 export async function middleware(request: NextRequest) {
-  console.log("middleware running");
-  const response = NextResponse.next();
-
-  response.headers.set("x-modified-edge", "middleware is working");
-
-  const isAdminApi = request.url.includes("/api/admin");
-  const isLogin = request.url.includes("/login");
-  // const auth = request.cookies.get("auth");
-  const auth = request.cookies.get("auth");
   try {
+    console.log("middleware running");
+    const response = NextResponse.next();
+    response.headers.set("x-modified-edge", "middleware is working");
+
+    const isAdminApi = request.url.includes("/api/admin");
+    const isLogin = request.url.includes("/login");
+    // const auth = request.cookies.get("auth");
+    const auth = request.cookies.get("auth");
     const tokenUser = await verifyServerToken(auth?.value || "");
     if (isAdminApi) {
       if (!tokenUser) return NextResponse.error();
