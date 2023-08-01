@@ -1,5 +1,13 @@
+import { Metadata } from "next"
 import { Navbar } from "./Navbar"
 import { Providers } from "./providers"
+
+export const metadata: Metadata = {
+    manifest: '/manifest.json',
+    // verification: {
+    //   google: '',
+    // }
+}
 
 const AdminLayout = ({ children }: { children: React.ReactNode }) => {
 
