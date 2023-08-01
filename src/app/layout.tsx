@@ -24,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en" className='bg-white scroll-pt-[50px] sm:scroll-pt-[100px] text-primary max-w-[100vw]' >
       <Head>
+        <title>Dr. Nicolás Rodríguez Luna</title>
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/icons/icon-384x384.png"></link>
       </Head>
