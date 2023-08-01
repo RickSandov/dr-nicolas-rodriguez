@@ -1,6 +1,7 @@
 import { Navbar } from '@/components';
 import '@/styles/globals.css';
 import { Lato } from 'next/font/google';
+import Head from 'next/head';
 import { Toaster } from 'react-hot-toast';
 
 const lato = Lato({
@@ -22,10 +23,10 @@ export default function RootLayout({
   // const fullUrl = headersList.get('referer') || "";
   return (
     <html lang="en" className='bg-white scroll-pt-[50px] sm:scroll-pt-[100px] text-primary max-w-[100vw]' >
-      <title>
-        Dr. Nicolás Rodríguez Luna
-      </title>
-      <meta name="description" content="Clínica" />
+      <Head>
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/icons/icon-384x384.png"></link>
+      </Head>
       <body className={lato.className}>
         <Toaster
           position="bottom-left"

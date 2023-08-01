@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils"
 import { CallPopOver } from "./CallPopOver"
 import { format, parseISO } from "date-fns"
 import { useTheme } from "next-themes"
+import { StatusPopOver } from "./StatusPopOver"
 
 interface Props extends IParsedContactForm {
     onClick: () => void
@@ -47,9 +48,8 @@ export const ContactFormCard = ({ name, phoneNumber, message, receivedAt, status
             key={phoneNumber}
             className={`rounded-lg p-3 pt-4 shadow-light cursor-default relative transition-all hover:opacity-100 hover:shadow-dark dark:bg-primary  ${statusClassName.item}`}
         >
-            <span className={cn(`block w-fit ml-auto text-right p-1 px-3 rounded-full border-2 text-black font-bold ${statusClassName.status}`)}>
-                {status}
-            </span>
+
+            <StatusPopOver currentStatus={status} statusClassName={statusClassName.status} />
             <h2 className={`mt-7 font-bold ${statusClassName.accent}`} >{name}</h2>
             <p className={statusClassName.text}>{message}</p>
             <div className="flex items-center justify-between mt-5">
