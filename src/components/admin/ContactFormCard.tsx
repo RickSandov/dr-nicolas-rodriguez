@@ -1,6 +1,6 @@
 'use client'
 
-import { IParsedContactForm, contactFormStatusType } from "@/interfaces"
+import { ContactFormStatusType, IParsedContactForm, contactFormStatusType } from "@/interfaces"
 import { PlusIcon } from "../icons"
 import { useMemo } from "react"
 import { cn } from "@/lib/utils"
@@ -10,10 +10,11 @@ import { useTheme } from "next-themes"
 import { StatusPopOver } from "./StatusPopOver"
 
 interface Props extends IParsedContactForm {
-    onClick: () => void
+    onClick: () => void;
+    changeFilter: (status: ContactFormStatusType) => void
 }
 
-export const ContactFormCard = ({ name, phoneNumber, message, receivedAt, status, onClick }: Props) => {
+export const ContactFormCard = ({ name, phoneNumber, message, receivedAt, status, onClick, changeFilter }: Props) => {
 
     const statusClassName = useMemo(() => {
         const styles = {
@@ -49,7 +50,7 @@ export const ContactFormCard = ({ name, phoneNumber, message, receivedAt, status
             className={`rounded-lg p-3 pt-4 shadow-light cursor-default relative transition-all hover:opacity-100 hover:shadow-dark dark:bg-primary  ${statusClassName.item}`}
         >
 
-            <StatusPopOver currentStatus={status} statusClassName={statusClassName.status} />
+            <StatusPopOver phoneNumber={phoneNumber} currentStatus={status} statusClassName={statusClassName.status} changeFilter={changeFilter} />
             <h2 className={`mt-7 font-bold ${statusClassName.accent}`} >{name}</h2>
             <p className={statusClassName.text}>{message}</p>
             <div className="flex items-center justify-between mt-5">

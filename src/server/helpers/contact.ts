@@ -51,7 +51,17 @@ export async function updateContactFormStatus(
   phoneNumber: string,
   status: ContactFormStatusType
 ) {
-  await connect();
-  await ContactForm.updateOne({ phoneNumber }, { status });
-  await disconnect();
+  try {
+    await connect();
+    console.log({ status });
+    const card = await ContactForm.findOneAndUpdate(
+      { phoneNumber },
+      { status },
+      { new: true }
+    );
+    console.log({ card });
+    await disconnect();
+  } catch (error) {
+    console.log({ error });
+  }
 }

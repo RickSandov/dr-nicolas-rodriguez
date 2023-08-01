@@ -7,17 +7,17 @@ import Button from '@/components/button/Button'
 import { MagnifyIcon } from '@/components/icons'
 import { Modal } from '@/components/modal/Modal'
 import { ContactFormStatusType, IParsedContactForm, contactFormStatusType, contactFormStatusTypeArray } from '@/interfaces'
-import React, { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
+import React, { FC, useEffect, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 
-export const ContactFormsList = ({ contactFormsArray }: { contactFormsArray: IParsedContactForm[] }) => {
+interface Props { contactFormsArray: IParsedContactForm[] }
+export const ContactFormsList: FC<Props> = ({ contactFormsArray }) => {
 
     const [activeFormCard, setActiveFormCard] = useState<null | IParsedContactForm>(null);
     const [allForms, setAllForms] = useState(contactFormsArray);
     const [forms, setForms] = useState(contactFormsArray);
     const [statusQuery, setStatusQuery] = useState<ContactFormStatusType>(contactFormStatusType.pending);
     const [isLoading, setIsLoading] = useState(false);
-    const { register } = useForm();
 
     useEffect(() => {
         setIsLoading(true);
@@ -76,7 +76,7 @@ export const ContactFormsList = ({ contactFormsArray }: { contactFormsArray: IPa
                     <ul className='list-none py-7 max-w-[95%] mx-auto grid grid-cols-auto-fill grid-rows-22 gap-4 ' >
                         {
                             forms.map((item, i) => (
-                                <ContactFormCard {...item} key={i} onClick={() => setActiveFormCard(item)} />
+                                <ContactFormCard {...item} key={i} onClick={() => setActiveFormCard(item)} changeFilter={setStatusQuery} />
                             ))
                         }
                     </ul>

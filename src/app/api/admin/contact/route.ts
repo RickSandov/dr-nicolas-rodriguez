@@ -23,8 +23,19 @@ export async function GET(req: Request) {
 }
 
 export async function PATCH(req: Request) {
-  const { searchParams } = new URL(req.url);
-  const status = searchParams.get("status") as ContactFormStatusType;
-  const id = searchParams.get("id") as ContactFormStatusType;
-  await updateContactFormStatus(id, status);
+  try {
+    const { status, phoneNumber } = (await req.json()) as {
+      status: ContactFormStatusType;
+      phoneNumber: string;
+    };
+    await updateContactFormStatus(phoneNumber, status);
+    return new Response("ok", {
+      status: 200,
+    });
+  } catch (error) {
+    console.log({ error });
+    return new Response("error", {
+      status: 500,
+    });
+  }
 }

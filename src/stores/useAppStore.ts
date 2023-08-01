@@ -4,7 +4,8 @@ import { toast } from "react-hot-toast";
 import { create } from "zustand";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
 import { IPatient } from "@/interfaces";
-import { getCookie, deleteCookie } from "cookies-next";
+import { deleteCookie } from "cookies-next";
+import { error } from "console";
 
 interface IPostAppointment {
   patientName: string;
@@ -37,6 +38,11 @@ interface AppState {
   logout: () => void;
   cancelAppointment: (id: string, resume: string) => Promise<void>;
   registerAttendance: (id: string, resume: string) => Promise<void>;
+  updateContactCardStatus: (
+    phoneNumber: string,
+    status: string,
+    onClose: () => void
+  ) => Promise<void>;
 }
 
 export const useAppStore = create<AppState>((set, get) => ({
@@ -163,6 +169,27 @@ export const useAppStore = create<AppState>((set, get) => ({
         return "Consulta registrada con éxito";
       },
       error: "Ocurrió un error, revise su conexión a internet",
+    });
+  },
+  updateContactCardStatus: async (
+    phoneNumber: string,
+    status: string,
+    onClose: () => void
+  ) => {
+    const req = api.patch(`/contact`, {
+      phoneNumber,
+      status,
+    });
+    toast.promise(req, {
+      loading: "actualizando estado",
+      success: ({ data }) => {
+        onClose();
+        return "Estado actualizado con éxito";
+      },
+      error: (error) => {
+        console.log({ error });
+        return "Ocurrió un error, revise su conexión a internet";
+      },
     });
   },
 }));
