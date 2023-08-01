@@ -9,7 +9,7 @@ export const links: { text: string; to: string; roles: UserType[] }[] = [
   {
     text: "agenda",
     to: "/admin/agenda",
-    roles: [userType.admin],
+    roles: [userType.admin, userType.employee],
   },
   {
     text: "pacientes",
