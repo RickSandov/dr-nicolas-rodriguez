@@ -110,6 +110,7 @@ export const useAppStore = create<AppState>((set, get) => ({
         loading: "Agendando consulta",
         success: () => {
           onClose();
+          get().router?.push("/admin/agenda");
           return "Consulta agendada con éxito";
         },
         error: "Ocurrió un error, revise su conexión a internet",
