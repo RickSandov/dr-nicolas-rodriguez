@@ -1,10 +1,11 @@
 import { ContactFormsList } from '@/components/pages/admin'
-import { contactFormStatusType } from '@/interfaces';
+import { ContactFormStatusType, contactFormStatusType } from '@/interfaces';
 import { getContactForms } from '@/server/helpers';
 import React, { Suspense } from 'react'
 
-const Page = async () => {
-    const contactFormsArray = await getContactForms(contactFormStatusType.pending);
+const Page = async ({ searchParams }: { searchParams: { [key: string]: string | undefined } }) => {
+    const statusSearch = searchParams["status"] || contactFormStatusType.pending;
+    const contactFormsArray = await getContactForms(statusSearch as ContactFormStatusType);
 
     return (
         <>

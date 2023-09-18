@@ -1,6 +1,7 @@
 import { Metadata } from "next"
 import { Navbar } from "./Navbar"
 import { Providers } from "./providers"
+import { contactFormStatusType } from "@/interfaces"
 
 export const metadata: Metadata = {
     manifest: '/manifest.json',

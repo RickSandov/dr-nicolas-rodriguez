@@ -1,11 +1,11 @@
 import React from 'react'
 import { DoctorIconWhite, LogoTextWhite, LogoWhite } from '../icons'
+import Link from 'next/link'
 
 export const Footer = () => {
     return (
         <footer
-            className='bg-gradient-to-b from-primary to-secondary
-            flex flex-col items-center justify-between pb-14'
+            className='flex flex-col items-center justify-between bg-gradient-to-b from-primary to-secondary pb-14'
         >
             <div>
 
@@ -16,7 +16,7 @@ export const Footer = () => {
                 </div>
                 {/* <LogoWhite /> */}
                 <LogoTextWhite />
-                <span className='mt-2 text-xs text-secondary-light' >{'©2023 Dr. Nicolás Rodriguez'}</span>
+                <Link href={'/admin'} className='mt-2 text-xs text-secondary-light' >{'©2023 Dr. Nicolás Rodriguez'}</Link>
             </div>
         </footer>
     )
