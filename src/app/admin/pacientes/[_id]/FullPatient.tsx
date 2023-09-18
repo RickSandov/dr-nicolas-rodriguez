@@ -7,8 +7,8 @@ const FullPatient = ({ patient }: { patient: IPatientWAppointments }) => {
     const { name, phoneNumber, appointments } = patient;
     const appointmentsCount = appointments.length;
     return (
-        <div className='bg-white shadow-light p-4 text-primary mt-4 transition-all animate-fade-in rounded-xl' >
-            <h2 className='font-bold text-xl capitalize text-black' >{name}</h2>
+        <div className='p-4 mt-4 transition-all bg-white shadow-light text-primary animate-fade-in rounded-xl' >
+            <h2 className='text-xl font-bold text-black capitalize' >{name}</h2>
             <p>{
                 phoneNumber.slice(0, 3)
                 + ' '
@@ -21,20 +21,19 @@ const FullPatient = ({ patient }: { patient: IPatientWAppointments }) => {
                     <p >Última cita: <strong>{format(new Date(appointments[appointmentsCount - 1].start), 'dd, MMMM yyyy', {
                         locale: es
                     })}</strong></p>
-                    <h3 className='mt-3 text-black font-bold text-md mb-1' >
+                    <h3 className='mt-3 mb-1 font-bold text-black text-md' >
                         Consultas
                     </h3>
                     <ul className='flex flex-col gap-2' >
                         {appointments.map((appointment, i) => (
-                            <li className='border-secondary-light border-2 p-2 rounded-lg' key={i} >
+                            <li className='p-2 border-2 rounded-lg border-secondary-light' key={i} >
                                 <p className='text-right'>{format(new Date(appointment.start), 'dd, MMMM yyyy', { locale: es })}</p>
 
-                                <p className='text-sm mb-3'>
+                                <p className='mb-3 text-sm'>
                                     {
                                         appointment.attendance ? (
                                             'Asistencia registrada.'
-                                        ) : appointment.canceled ?
-                                            'Cancelada.' : ''
+                                        ) : ''
                                     }
                                 </p>
 
