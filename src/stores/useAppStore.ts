@@ -184,6 +184,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       loading: "actualizando estado",
       success: ({ data }) => {
         onClose();
+        get().router?.push("/admin?status=" + status);
         return "Estado actualizado con éxito";
       },
       error: (error) => {

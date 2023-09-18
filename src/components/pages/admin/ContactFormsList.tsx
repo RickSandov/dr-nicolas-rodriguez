@@ -41,7 +41,7 @@ export const ContactFormsList: FC<Props> = ({ contactFormsArray }) => {
     return (
         <>
             <Button
-                className='block ml-auto mt-2 mr-2 bg-primary text-white'
+                className='block mt-2 ml-auto mr-2 text-white bg-primary'
                 onClick={() => setActiveFormCard({
                     _id: '',
                     message: '',
@@ -65,12 +65,12 @@ export const ContactFormsList: FC<Props> = ({ contactFormsArray }) => {
                     </Button>
                 ))}
             </div>
-            <div className='w-full flex justify-end items-center px-2' >
+            <div className='flex items-center justify-end w-full px-2' >
                 <input
-                    className='rounded-full border-2 border-primary text-black py-1 px-3 dark:bg-white'
+                    className='px-3 py-1 text-black border-2 rounded-full border-primary dark:bg-white'
                     placeholder='Buscar'
                     onChange={handleSearch} />
-                <div className='w-8 p-1 absolute right-3' >
+                <div className='absolute w-8 p-1 right-3' >
                     <MagnifyIcon />
                 </div>
             </div>
