@@ -75,9 +75,8 @@ export const useAppStore = create<AppState>((set, get) => ({
     toast.promise(req, {
       loading: "iniciando sesión",
       success: ({ data }) => {
-        // console.log({ data });
-        get().router?.push("/admin");
         set({ user: data });
+        get().router?.push("/admin");
         return `Sesión iniciada con éxito`;
       },
       error: (error) => {
